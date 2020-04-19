@@ -171,7 +171,7 @@ by.joyan
   <!-- 菜单按钮 -->
   <div class="input-card-showbtn" style="width: auto">
     <button class="btn-show" id="show-btn">
-      <p>&ensp;展开地块列表&ensp;</p>
+      <p style="font-size:13px">&ensp;展开地块列表&ensp;</p>
     </button>
   </div>
 
@@ -544,7 +544,7 @@ by.joyan
       var oCon = document.getElementById('show-rs').style;
       btn.onclick = function() {
         oCon.display = oCon.display == 'block' ? 'none' : 'block';
-        oCon.display = oCon.display == 'block' ? btn.innerHTML = '&ensp;收起&ensp;' : btn.innerHTML = '&ensp;展开地块列表&ensp;';
+        oCon.display = oCon.display == 'block' ? btn.innerHTML = '<p style="font-size:13px">&ensp;收起&ensp;</p>' : btn.innerHTML = '<p style="font-size:13px">&ensp;展开地块列表&ensp;</p>';
       }
     };
 
