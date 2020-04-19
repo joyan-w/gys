@@ -526,15 +526,7 @@ by.joyan
         'AMap.ControlBar', //3D 罗盘控制
       ],
       function() {
-        //其他控件添加
-        map.addControl(new AMap.ControlBar({ // 添加 3D 罗盘控制
-          showZoomBar: false, //缩放按钮
-          showControlButton: true, //罗盘
-          position: { //位置
-            right: '10px',
-            top: '10px',
-          }
-        }));
+        map.addControl(new AMap.ControlBar());
       });
 
 
@@ -620,9 +612,10 @@ by.joyan
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('reset-bounds'), 'click', function() {
-      var mybounds = new AMap.Bounds([118.205116, 24.492489], [118.187092, 24.483643]);
-      map.setBounds(mybounds); //显示指定范围
+      map.panTo([118.195471,24.488023]); //移动至指定点
       map.setZoom(17); //显示级别
+      map.setRotation(0); //平面视角
+      map.setPitch(0); //俯仰角
       setTimeout(function() {
         log.success("地块总览"); //弹窗提示
       }, 0.3 * 1000); //延迟0.3秒加载
