@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<!--
+本页面基于高德开放平台制作，用于开发学习。
+by.joyan
+ -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+  <title>正式页面</title>
+  <style>
+    html,
+    body,
+
+    #container {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .amap-ui-control-layer .iconfont {
+      margin-right: 0px !important
+    }
+
+    /* 菜单按钮 */
+    .btn-show {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+      background-color: transparent;
+      background-image: none;
+      color: rgba(114, 124, 245, 1);
+      border-color: rgba(114, 124, 245, 1);
+      padding: .25rem .5rem;
+      line-height: 1.5;
+      border-radius: 1rem;
+      -webkit-appearance: button;
+      cursor: pointer;
+    }
+
+    .btn-show:hover {
+      color: #fff;
+      background-color: rgba(114, 124, 245, 1);
+      border-color: rgba(114, 124, 245, 1);
+    }
+
+    .btn-show:hover {
+      text-decoration: none;
+    }
+
+    .btn-show:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+
+    /* 菜单按钮容器 */
+    .input-card-showbtn {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border-radius: .25rem;
+      width: 22rem;
+      border-width: 0;
+      /* 边框倒角 */
+      border-radius: 10rem;
+      /* 投影颜色及角度 */
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+      position: fixed;
+      /* 菜单按钮相对页面位置 */
+      bottom: 2rem;
+      right: 2rem;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 0rem;
+    }
+
+    /* 弹出选卡 */
+    .input-card-rs {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border-radius: .25rem;
+      width: 22rem;
+      border-width: 0;
+      border-radius: 0.4rem;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+      position: fixed;
+      /* 菜单相对页面位置 */
+      bottom: 5rem;
+      right: 2rem;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 0.75rem 1.25rem;
+      /* 默认不显示 */
+      display: none;
+    }
+
+    .infoname {
+      position: fixed;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 1rem;
+      width: 22rem;
+      padding: .75rem 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: .25rem;
+      background-color: white;
+      border-width: 0;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- 地图容器 -->
+  <div id="container"></div>
+
+  <!-- 信息卡 -->
+  <div class="infoname">
+    <p style="text-align: center;letter-spacing:3px;/*字符间距*/"><b>中铁科建城市停车</b></p>
+  </div>
+
+  <!-- 点击选卡 -->
+  <div class="input-card-rs" id="show-rs" style="width: auto">
+    <h4><b>地块列表</b></h4>
+    <div class="input-item">
+      <button class="btn" id="reset-bounds">地块总览</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn09">C09地块</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn23">D23地块</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn24">D24地块</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn25">D25地块</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn26">D26地块</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn27">D27地块</button>
+    </div>
+    <div class="input-item">
+      <button class="btn" id="pantoBtn28">D28地块</button>
+    </div>
+  </div>
+  <!-- 菜单按钮 -->
+  <div class="input-card-showbtn" style="width: auto">
+    <button class="btn-show" id="show-btn">
+      <p>&ensp;展开地块列表&ensp;</p>
+    </button>
+  </div>
+
+
+  <!-- 加载地图JSAPI脚本 -->
+  <script src="https://webapi.amap.com/maps?v=1.4.15&key=5d734c342da6acb3de3ebdc017ca2e32"></script>
+  <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+  <!-- UI组件库 1.0 -->
+  <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+
+  <!-- 定义脚本 -->
+  <script>
+    //定义楼快样式
+    var buildingLayer = new AMap.Buildings({
+      zIndex: 130,
+      merge: false,
+      sort: false,
+      zooms: [17, 20]
+    });
+    var options = {
+      hideWithoutStyle: false, //是否隐藏设定区域外的楼块
+      areas: [{ //围栏2:D25
+          color1: 'ff99ff00',
+          color2: 'ff999900',
+          path: [
+            [118.195116, 24.486865],
+            [118.195633, 24.486842],
+            [118.195673, 24.486797],
+            [118.195653, 24.486512],
+            [118.195614, 24.486481],
+            [118.195132, 24.486536],
+            [118.195094, 24.486559],
+            [118.195101, 24.486841]
+          ]
+        },
+        { //围栏2:D26
+          color1: 'ff99ff00',
+          color2: 'ff999900',
+          path: [
+            [118.195118, 24.486469],
+            [118.195078, 24.486439],
+            [118.195012, 24.486036],
+            [118.195612, 24.485949],
+            [118.195656, 24.486199],
+            [118.195665, 24.486361],
+            [118.195612, 24.486417]
+          ]
+        },
+        { //围栏1:D27
+          //visible:false,//建筑是否可见
+          visible: false, //建筑不可见
+          rejectTexture: true, //是否屏蔽自定义地图的纹理
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.195817, 24.486845],
+            [118.195758, 24.486799],
+            [118.195751, 24.486507],
+            [118.195787, 24.486455],
+            [118.196101, 24.48641],
+            [118.196432, 24.486373],
+            [118.196485, 24.48641],
+            [118.196485, 24.486778],
+            [118.19644, 24.486822]
+          ]
+        },
+        { //围栏1:D28
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.195791, 24.486398],
+            [118.195738, 24.486366],
+            [118.195688, 24.485936],
+            [118.196427, 24.485791],
+            [118.196457, 24.485817],
+            [118.196473, 24.485994],
+            [118.196475, 24.48627],
+            [118.196438, 24.486316]
+          ]
+        },
+        { //围栏1:D23
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.193754, 24.486772],
+            [118.193768, 24.486994],
+            [118.193813, 24.487158],
+            [118.193856, 24.487307],
+            [118.193929, 24.487495],
+            [118.194004, 24.487646],
+            [118.19406, 24.487746],
+            [118.194264, 24.487844],
+            [118.194323, 24.48782],
+            [118.194248, 24.486741]
+          ]
+        },
+        { //围栏1:D24
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.19381, 24.486522],
+            [118.193807, 24.486339],
+            [118.193836, 24.48607],
+            [118.193903, 24.48578],
+            [118.194005, 24.485475],
+            [118.194067, 24.485326],
+            [118.194139, 24.485267],
+            [118.194156, 24.485304],
+            [118.194215, 24.486461],
+            [118.19418, 24.486512]
+          ]
+        },
+        { //围栏1:C09
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.195298, 24.490462],
+            [118.195408, 24.48992],
+            [118.196591, 24.490144],
+            [118.196429, 24.490686]
+          ]
+        },
+      ]
+    };
+    buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
+
+    //初始化地图
+    var map = new AMap.Map('container', {
+      zoom: 17, //初始化地图层级
+      center: [118.195723, 24.486455], //初始化地图中心点
+      pitch: 0, //仰角
+      rotation: 0, //旋转视角
+      expandZoomRange: true, //缩放控制
+      zooms: [3, 20],
+      viewMode: '3D', //开启3D视图,默认为关闭
+      buildingAnimation: true, //楼块出现是否带动画
+      showIndoorMap: false, // 是否在有矢量底图的时候自动展示室内地图，PC默认true,移动端默认false
+      doubleClickZoom: true, // 地图是否可通过双击鼠标放大地图，默认为true
+      resizeEnable: true, //是否监控地图容器尺寸变化，默认值为false
+      rotateEnable: true,
+      pitchEnable: true,
+      //zoomEnable: true, //地图是否可缩放，默认值为true
+      features: ['bg', 'road', 'point'],
+      mapStyle: 'amap://styles/light',
+      layers: [
+        new AMap.TileLayer(),
+        buildingLayer,
+      ]
+    });
+
+    //地面形状
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[0].path,
+      map: map
+    }) //D25
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[1].path,
+      map: map
+    }) //D26
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[2].path,
+      map: map
+    }) //D27
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[3].path,
+      map: map
+    }) //D28
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[4].path,
+      map: map
+    }) //D23
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[5].path,
+      map: map
+    }) //D24
+    new AMap.Polygon({
+      bubble: true,
+      fillOpacity: 0.4,
+      strokeWeight: 1,
+      path: options.areas[6].path,
+      map: map
+    }) //D24
+
+
+    //文本标签
+    //文本 A
+    var A = new AMap.Text({
+      text: 'D25地块',
+      position: [118.195396, 24.486689],
+      height: 10,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+    //文本 B
+    var B = new AMap.Text({
+      text: 'D26地块',
+      position: [118.195364, 24.486299],
+      height: 10,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+    //文本 C
+    var C = new AMap.Text({
+      text: 'D27地块',
+      position: [118.196142, 24.486631],
+      height: 10,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+    //文本 D
+    var D = new AMap.Text({
+      text: 'D28地块',
+      position: [118.196067, 24.486264],
+      height: 10,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+    //文本 E
+    var E = new AMap.Text({
+      text: 'D23地块',
+      position: [118.194124, 24.487074],
+      height: 10,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+    //文本 F
+    var F = new AMap.Text({
+      text: 'D24地块',
+      position: [118.194059, 24.486122],
+      height: 10,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+    //文本 F
+    var F = new AMap.Text({
+      text: 'C09地块',
+      position: [118.195926, 24.490316],
+      height: 250,
+      verticalAlign: 'bottom',
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px'
+      }
+    })
+
+
+    //路径
+    var path1 = [
+      [118.194391, 24.486583],
+      [118.195057, 24.486515],
+      [118.195716, 24.486446],
+      [118.196513, 24.486339],
+      [118.197358, 24.486185]
+    ];
+    var path2 = [
+      [118.195415, 24.484995],
+      [118.195576, 24.485527],
+      [118.195643, 24.485891],
+      [118.195702, 24.486321],
+      [118.195747, 24.48708],
+      [118.195737, 24.487536]
+    ];
+    var polyline1 = new AMap.Polyline({
+      path: path1, // 设置线覆盖物路径
+      showDir: true,
+      dirColor: 'pink',
+      strokeColor: '#fcf4c2', // 线颜色
+      strokeWeight: 10 // 线宽
+    });
+
+    var polyline2 = new AMap.Polyline({
+      path: path2, // 设置线覆盖物路径
+      showDir: true,
+      dirColor: 'pink',
+      strokeColor: '#fcf4c2', // 线颜色
+      strokeWeight: 10 // 线宽
+    });
+
+    map.add([polyline1, polyline2])
+
+    map.setFitView()
+
+    //其他插件载入
+    AMap.plugin([
+        'AMap.ControlBar', //3D 罗盘控制
+      ],
+      function() {
+        //其他控件添加
+        map.addControl(new AMap.ControlBar({ // 添加 3D 罗盘控制
+          showZoomBar: false, //缩放按钮
+          showControlButton: true, //罗盘
+          position: { //位置
+            right: '10px',
+            top: '10px',
+          }
+        }));
+      });
+
+
+    //菜单
+    window.onload = function() {
+      var btn = document.getElementById('show-btn'); //菜单按钮
+      var oCon = document.getElementById('show-rs').style;
+      btn.onclick = function() {
+        oCon.display = oCon.display == 'block' ? 'none' : 'block';
+        oCon.display = oCon.display == 'block' ? btn.innerHTML = '&ensp;收起&ensp;' : btn.innerHTML = '&ensp;展开地块列表&ensp;';
+      }
+    };
+
+    //点击选卡
+    AMap.event.addDomListener(document.getElementById('pantoBtn09'), 'click', function() {
+      map.panTo([118.196041, 24.490248]); //移动至指定点
+      map.setZoom(19.5); //显示级别
+      map.setRotation(44); //平面视角
+      map.setPitch(60); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：C09地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('pantoBtn23'), 'click', function() {
+      map.panTo([118.194036, 24.487103]); //移动至指定点
+      map.setZoom(19.7); //显示级别
+      map.setRotation(-21); //平面视角
+      map.setPitch(50); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D23地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('pantoBtn24'), 'click', function() {
+      map.panTo([118.193965, 24.486103]); //移动至指定点
+      map.setZoom(19.7); //显示级别
+      map.setRotation(200.5); //平面视角
+      map.setPitch(47); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D24地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('pantoBtn25'), 'click', function() {
+      map.panTo([118.19538, 24.486694]); //移动至指定点
+      map.setZoom(20); //显示级别
+      map.setRotation(37.4); //平面视角
+      map.setPitch(58); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D25地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('pantoBtn26'), 'click', function() {
+      map.panTo([118.195239, 24.486206]); //移动至指定点
+      map.setZoom(20); //显示级别
+      map.setRotation(140); //平面视角
+      map.setPitch(57); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D26地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('pantoBtn27'), 'click', function() {
+      map.panTo([118.196109, 24.486631]); //移动至指定点
+      map.setZoom(20); //显示级别
+      map.setRotation(-24); //平面视角
+      map.setPitch(46); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D27地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('pantoBtn28'), 'click', function() {
+      map.panTo([118.196079, 24.48597]); //移动至指定点
+      map.setZoom(20); //显示级别
+      map.setRotation(-173); //平面视角
+      map.setPitch(62); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D28地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('reset-bounds'), 'click', function() {
+      var mybounds = new AMap.Bounds([118.205116, 24.492489], [118.187092, 24.483643]);
+      map.setBounds(mybounds); //显示指定范围
+      map.setZoom(17); //显示级别
+      setTimeout(function() {
+        log.success("地块总览"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
+
+    //3D模型初始位置
+    var position_3d = [118.195977, 24.486574]
+
+    // 添加 3D 雷达
+    /*var object3Dlayer = new AMap.Object3DLayer();
+    map.add(object3Dlayer);
+
+    var radar;
+    var buildRadar = function() {
+      radar = new AMap.Object3D.Mesh();
+      radar.transparent = true;
+      radar.backOrFront = 'front';
+
+      var geometry = radar.geometry;
+      var radius = 250; // 米
+      radius = radius / map.getResolution(position_3d, 20);
+      var unit = 1;
+      var range = 200;
+      var count = range / unit;
+
+      for (var i = 0; i < count; i += 1) {
+        var angle1 = i * unit * Math.PI / 180;
+        var angle2 = (i + 1) * unit * Math.PI / 180;
+
+        var p1x = Math.cos(angle1) * radius;
+        var p1y = Math.sin(angle1) * radius;
+        var p2x = Math.cos(angle2) * radius;
+        var p2y = Math.sin(angle2) * radius;
+
+        geometry.vertices.push(0, 0, 0);
+        geometry.vertices.push(p1x, p1y, 0);
+        geometry.vertices.push(p2x, p2y, 0);
+
+        var opacityStart = getOpacity(i / count);
+        var opacityEnd = getOpacity((i + 1) / count);
+
+        geometry.vertexColors.push(0, 1, 0.2, opacityStart);
+        geometry.vertexColors.push(0, 1, 0.2, opacityStart);
+        geometry.vertexColors.push(0, 1, 0.2, opacityEnd);
+      }
+
+      radar.position(position_3d);
+
+      object3Dlayer.add(radar);
+    };
+
+    function getOpacity(scale) {
+      return 1 - Math.pow(scale, 0.3);
+    }
+
+    function scan() {
+      radar.rotateZ(-2);
+      AMap.Util.requestAnimFrame(scan);
+    }
+
+    buildRadar();
+    scan();*/
+
+    //模型
+    var object3Dlayer = new AMap.Object3DLayer();
+    map.add(object3Dlayer);
+
+    var center_3d = map.lngLatToGeodeticCoord(position_3d); //模型初始位置
+
+    var topColor = [0, 1, 1, 0.4];
+    var topFaceColor = [0, 1, 1, 0.4];
+    var bottomColor = [0, 0, 1, 0.4];
+
+    //添加一个圆柱体
+    var addRegularPrism = function(center, segment, deep, height, radius) {
+
+      var cylinder = new AMap.Object3D.Mesh();
+      var geometry = cylinder.geometry;
+      var verticesLength = segment * 2;
+      var path = []
+      for (var i = 0; i < segment; i += 1) {
+        var angle = 2 * Math.PI * i / segment;
+        var x = center.x + Math.cos(angle) * radius;
+        var y = center.y + Math.sin(angle) * radius;
+        path.push([x, y]);
+        geometry.vertices.push(x, y, -deep); //底部顶点
+        geometry.vertices.push(x, y, -height); //顶部顶点
+
+        geometry.vertexColors.push.apply(geometry.vertexColors, bottomColor); //底部颜色
+        geometry.vertexColors.push.apply(geometry.vertexColors, topColor); //顶部颜色
+
+        var bottomIndex = i * 2;
+        var topIndex = bottomIndex + 1;
+        var nextBottomIndex = (bottomIndex + 2) % verticesLength;
+        var nextTopIndex = (bottomIndex + 3) % verticesLength;
+
+        geometry.faces.push(bottomIndex, topIndex, nextTopIndex); //侧面三角形1
+        geometry.faces.push(bottomIndex, nextTopIndex, nextBottomIndex); //侧面三角形2
+      }
+
+      // 构建顶面三角形,为了区分顶面点和侧面点使用不一样的颜色,所以需要独立的顶点
+      for (var i = 0; i < segment; i += 1) {
+        geometry.vertices.push.apply(geometry.vertices, geometry.vertices.slice(i * 6 + 3, i * 6 + 6)); //底部顶点
+        geometry.vertexColors.push.apply(geometry.vertexColors, topFaceColor);
+      }
+
+      var triangles = AMap.GeometryUtil.triangulateShape(path);
+      var offset = segment * 2;
+
+      for (var v = 0; v < triangles.length; v += 3) {
+        geometry.faces.push(triangles[v] + offset, triangles[v + 2] + offset, triangles[v + 1] + offset);
+      }
+
+      cylinder.transparent = true; // 如果使用了透明颜色，请设置true
+      object3Dlayer.add(cylinder);
+    };
+
+    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, 10, 100) //圆柱
+  </script>
+
+</body>
+
+</html>
