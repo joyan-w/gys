@@ -668,6 +668,7 @@ by.joyan
 
     //点击选卡
     AMap.event.addDomListener(document.getElementById('pantoBtn09'), 'click', function() {
+      map.clearMap();
       map.panTo([118.195913, 24.49033]); //移动至指定点
       map.setZoom(19.5); //显示级别
       map.setRotation(61); //平面视角
