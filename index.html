@@ -161,7 +161,7 @@ by.joyan
 
   <!-- 信息卡 -->
   <div class="amap-copyright">
-    <p>@003</p>
+    <p>@004</p>
   </div>
   <div class="infoname">
     <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
@@ -531,7 +531,6 @@ by.joyan
         content: info.join(""), //使用默认信息窗体框样式，显示信息内容
         closeWhenClickMap: true, //鼠标点击地图后关闭信息窗体
         //offset: new AMap.Pixel(0, -45),//窗体偏移
-       autoMove:true,
       });
       infoWindow.open(map, path09); //在指定位置打开信息窗体
     }
@@ -676,7 +675,7 @@ by.joyan
     //点击选卡
     AMap.event.addDomListener(document.getElementById('pantoBtn09'), 'click', function() {
       map.panTo([118.195913, 24.49033]); //移动至指定点
-      map.setZoom(19); //显示级别
+      map.setZoom(18); //显示级别
       map.setRotation(61); //平面视角
       map.setPitch(50); //俯仰角
       openInfo09(); //打开信息窗体
