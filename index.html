@@ -896,19 +896,23 @@ by.joyan
     addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, 10, 100) //圆;
   
   </script>
-<Script>
-function refresh(){
-url = location.href;
-console.log(url);
-var once = url.split("#");
-if (once[1] != 1) {
-url += "#1";
-self.location.replace(url);
-window.location.reload();
-}
-}
-setTimeout('refresh()', 1000);
+<script>
+function reurl(){
 
+url = location.href; //把当前页面的地址赋给变量 url
+
+var times = url.split("?"); //分切变量 url 分隔符号为 "?"
+
+if(times[1] != 1){ //如果?后的值不等于1表示没有刷新
+
+url += "?1"; //把变量 url 的值加入 ?1
+
+self.location.replace(url); //刷新页面
+
+}
+}
+
+reurl();//执行这个函数
 </script>
 
 </body>
