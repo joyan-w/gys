@@ -894,16 +894,22 @@ by.joyan
     };
 
     addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, 10, 100) //圆;
-   
-  //加载完成后刷新
-   window.onload = function(){
-      var url=document.location.href;  //获取浏览器访问栏里的地址
-        if( url.indexOf("r=")==-1 ){    //判断地址后面是否多了某些值，没有就进方法里进行刷新
-      var t = new Date();
-        window.location.href = "<%=request.getContextPath()%>/url?r="+t.getTime();     
-        }
-    } 
+  
   </script>
+<Script>
+function refresh(){
+url = location.href;
+console.log(url);
+var once = url.split("#");
+if (once[1] != 1) {
+url += "#1";
+self.location.replace(url);
+window.location.reload();
+}
+}
+setTimeout('refresh()', 1000);
+
+</script>
 
 </body>
 
