@@ -782,63 +782,7 @@ by.joyan
     }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
 
     //3D模型初始位置
-    var position_3d = [118.195977, 24.486574]
-
-    // 添加 3D 雷达
-    /*var object3Dlayer = new AMap.Object3DLayer();
-    map.add(object3Dlayer);
-
-    var radar;
-    var buildRadar = function() {
-      radar = new AMap.Object3D.Mesh();
-      radar.transparent = true;
-      radar.backOrFront = 'front';
-
-      var geometry = radar.geometry;
-      var radius = 250; // 米
-      radius = radius / map.getResolution(position_3d, 20);
-      var unit = 1;
-      var range = 200;
-      var count = range / unit;
-
-      for (var i = 0; i < count; i += 1) {
-        var angle1 = i * unit * Math.PI / 180;
-        var angle2 = (i + 1) * unit * Math.PI / 180;
-
-        var p1x = Math.cos(angle1) * radius;
-        var p1y = Math.sin(angle1) * radius;
-        var p2x = Math.cos(angle2) * radius;
-        var p2y = Math.sin(angle2) * radius;
-
-        geometry.vertices.push(0, 0, 0);
-        geometry.vertices.push(p1x, p1y, 0);
-        geometry.vertices.push(p2x, p2y, 0);
-
-        var opacityStart = getOpacity(i / count);
-        var opacityEnd = getOpacity((i + 1) / count);
-
-        geometry.vertexColors.push(0, 1, 0.2, opacityStart);
-        geometry.vertexColors.push(0, 1, 0.2, opacityStart);
-        geometry.vertexColors.push(0, 1, 0.2, opacityEnd);
-      }
-
-      radar.position(position_3d);
-
-      object3Dlayer.add(radar);
-    };
-
-    function getOpacity(scale) {
-      return 1 - Math.pow(scale, 0.3);
-    }
-
-    function scan() {
-      radar.rotateZ(-2);
-      AMap.Util.requestAnimFrame(scan);
-    }
-
-    buildRadar();
-    scan();*/
-
+    var position_3d = [118.195977, 24.486574];
     //模型
     var object3Dlayer = new AMap.Object3DLayer();
     map.add(object3Dlayer);
