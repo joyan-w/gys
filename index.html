@@ -325,6 +325,22 @@ by.joyan
             [118.196429, 24.490686]
           ]
         },
+        { //周边建筑
+          //visible: false, //建筑不可见
+          color1: 'ffEE0000', //楼顶颜色
+          color2: 'ff330000', //楼面颜色
+          path: [
+            [118.195134, 24.487325],
+            [118.195109, 24.486842],
+            [118.196555, 24.486852],
+            [118.196469, 24.485816],
+            [118.195015, 24.485983],
+            [118.194868, 24.485307],
+            [118.197229, 24.484663],
+            [118.19753, 24.48628],
+            [118.197396, 24.487627]
+          ]
+        },
       ]
     };
     buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
@@ -332,7 +348,7 @@ by.joyan
     //初始化地图
     var map = new AMap.Map('container', {
       zoom: 17, //初始化地图层级
-      center: [118.195723, 24.486455], //初始化地图中心点
+      center: [118.195538, 24.487961], //初始化地图中心点
       pitch: 0, //仰角
       rotation: 0, //旋转视角
       expandZoomRange: true, //缩放控制
@@ -413,6 +429,9 @@ by.joyan
     var path27 = [118.196142, 24.486631];
     var path28 = [118.196071, 24.48607];
 
+    //3D模型初始位置
+    var position_3d = [118.195977, 24.486574];
+
     //文本标签
     var C09 = new AMap.Text({
       text: 'C09地块',
@@ -429,7 +448,7 @@ by.joyan
     })
 
     var D23 = new AMap.Text({
-      text: '<s>D23地块</s>',
+      text: '<s style="color:#e1e1e1">D23地块</s>',
       position: path23,
       height: 10,
       verticalAlign: 'bottom',
@@ -443,7 +462,7 @@ by.joyan
     })
 
     var D24 = new AMap.Text({
-      text: '<s>D24地块</s>',
+      text: '<s style="color:#e1e1e1">D24地块</s>',
       position: path24,
       height: 10,
       verticalAlign: 'bottom',
@@ -457,7 +476,7 @@ by.joyan
     })
 
     var D25 = new AMap.Text({
-      text: 'D25地块',
+      text: '<s style="color:#e1e1e1">D25地块</s>',
       position: path25,
       height: 10,
       verticalAlign: 'bottom',
@@ -512,6 +531,20 @@ by.joyan
       }
     })
 
+    var Ck = new AMap.Text({
+      text: '沉井式地下车库',
+      position: position_3d,
+      height: 5,
+      verticalAlign: 'bottom',
+      zooms: [19, 20],
+      map: map,
+      style: {
+        'background-color': 'white',
+        'border-color': 'white',
+        'font-size': '12px',
+      }
+    })
+
     //监听点击text，打开信息窗体
     AMap.event.addListener(C09, 'click', function() {
       openInfo09(); //打开信息窗体
@@ -533,6 +566,9 @@ by.joyan
     });
     AMap.event.addListener(D28, 'click', function() {
       openInfo28(); //打开信息窗体
+    });
+    AMap.event.addListener(Ck, 'click', function() {
+      openInfoCk(); //打开信息窗体
     });
 
     //弹出窗体
@@ -639,6 +675,21 @@ by.joyan
         offset: new AMap.Pixel(0, -35) //窗体偏移
       });
       infoWindow.open(map, path28); //在指定位置打开信息窗体
+    }
+
+    function openInfoCk() {
+      var info = []; //构建信息窗体中显示的内容
+      info.push("<div class='input-card content-window-card'><div><img style=\"float:left;\" src=\" http://img.mp.itc.cn/upload/20170609/f48ceb4489c544dcb36b904c97861241_th.jpg \"width=\"261px\" /></div> ");
+      info.push("<div style=\"padding:7px 0px 0px 0px;\"><h3>沉井式地下智能停车库</h3>");
+      info.push("<p class='input-item'>层数：4层；</p>");
+      info.push("<p class='input-item'>车位：16个/层，共计84个停车位；</p></div></div>");
+      infoWindow = new AMap.InfoWindow({
+        content: info.join(""), //使用默认信息窗体框样式，显示信息内容
+        closeWhenClickMap: true, //鼠标点击地图后关闭信息窗体
+        autoMove: true, //自动居中
+        offset: new AMap.Pixel(0, -35) //窗体偏移
+      });
+      infoWindow.open(map, position_3d); //在指定位置打开信息窗体
     }
 
 
@@ -781,8 +832,7 @@ by.joyan
       }, 0.3 * 1000); //延迟0.3秒加载
     }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
 
-    //3D模型初始位置
-    var position_3d = [118.195977, 24.486574]
+
 
     //模型
     var object3Dlayer = new AMap.Object3DLayer();
@@ -838,7 +888,7 @@ by.joyan
       object3Dlayer.add(cylinder);
     };
 
-    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150,-20, 70) //圆柱
+    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -20, 70) //圆柱
   </script>
 
 </body>
