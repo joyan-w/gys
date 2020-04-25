@@ -82,8 +82,8 @@ by.joyan
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
       /* 菜单按钮相对页面位置 */
-      bottom: 2rem;
-      right: 2rem;
+      bottom: 1.2rem;
+      right: 1.2rem;
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       padding: 0rem;
@@ -104,8 +104,8 @@ by.joyan
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
       /* 菜单相对页面位置 */
-      bottom: 5rem;
-      right: 2rem;
+      bottom: 4.5rem;
+      right: 1.2rem;
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       padding: 0.75rem 1.25rem;
@@ -160,7 +160,7 @@ by.joyan
 
   <!-- 信息卡 -->
   <div class="amap-copyright">
-    <p>-005</p>
+    <p>-001</p>
   </div>
   <div class="infoname">
     <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
@@ -684,10 +684,12 @@ by.joyan
 
     function openInfoCk() {
       var info = []; //构建信息窗体中显示的内容
-      info.push("<div class='input-card content-window-card'><div><img style=\"float:left;\" src=\" https://img.mp.itc.cn/upload/20170609/f48ceb4489c544dcb36b904c97861241_th.jpg \"width=\"261px\" /></div> ");
-      info.push("<div style=\"padding:7px 0px 0px 0px;\"><h3>沉井式地下智能停车库</h3>");
-      info.push("<p class='input-item'>层数：4层；</p>");
-      info.push("<p class='input-item'>车位：16个/层，共计84个停车位；</p></div></div>");
+      info.push("<div class='input-card content-window-card'><h3>沉井式地下智能停车库</h3>");
+      info.push("<div style='padding:7px 0px 0px 0px'>");
+      info.push("<div><img style='float:center;' src='http://img.mp.itc.cn/upload/20170609/f48ceb4489c544dcb36b904c97861241_th.jpg' width='260px' /></div><br>");
+      info.push("<p class='input-item'>地上面积：120 平方米；</p>");
+      info.push("<p class='input-item'>层数：地下 4 层；</p>");
+      info.push("<p class='input-item'>车位：16 个/层，共计 84 个停车位；</p>");
       infoWindow = new AMap.InfoWindow({
         content: info.join(""), //使用默认信息窗体框样式，显示信息内容
         closeWhenClickMap: true, //鼠标点击地图后关闭信息窗体
@@ -857,8 +859,8 @@ by.joyan
     var center_3d = map.lngLatToGeodeticCoord(position_3d);
 
     var topColor = [200 / 255, 200 / 255, 200 / 255, 0.9]; //上部渐变
-    var topFaceColor = [190 / 255, 190 / 255, 190 / 255, 0.9]; //顶面颜色
-    var bottomColor = [56 / 255, 56 / 255, 56 / 255, 0.9]; //下部渐变
+    var topFaceColor = [190 / 255, 190 / 255, 190 / 255, 0.8]; //顶面颜色
+    var bottomColor = [100 / 255, 100 / 255, 100 / 255, 0.9]; //下部渐变
 
     //添加一个圆柱体
     var addRegularPrism = function(center, segment, deep, height, radius) {
