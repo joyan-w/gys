@@ -160,7 +160,7 @@ by.joyan
 
   <!-- 信息卡 -->
   <div class="amap-copyright">
-    <p>-002</p>
+    <p>-003</p>
   </div>
   <div class="infoname">
     <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
@@ -532,16 +532,21 @@ by.joyan
     })
 
     var Ck = new AMap.Text({
-      text: '沉井式地下车库',
+      text: '&ensp;沉井式地下车库&ensp;',
       position: position_3d,
       height: 5,
       verticalAlign: 'bottom',
       zooms: [19, 20],
       map: map,
       style: {
-        'background-color': 'white',
-        'border-color': 'white',
+        'background-color': 'rgba(114, 124, 245, 1)',
+        'border-color': 'rgba(114, 124, 245, 1)',
         'font-size': '12px',
+        'border-radius': '10rem',
+        'color': 'white',
+        'box-shadow': ' 0 1px 5px 0 rgba(0, 0, 0, .3)',
+        'padding': '.5rem .5rem',
+        'margin': 'auto',
       }
     })
 
@@ -687,7 +692,7 @@ by.joyan
         content: info.join(""), //使用默认信息窗体框样式，显示信息内容
         closeWhenClickMap: true, //鼠标点击地图后关闭信息窗体
         autoMove: true, //自动居中
-        offset: new AMap.Pixel(0, -35) //窗体偏移
+        offset: new AMap.Pixel(0, -45) //窗体偏移
       });
       infoWindow.open(map, position_3d); //在指定位置打开信息窗体
     }
@@ -840,9 +845,9 @@ by.joyan
 
     var center_3d = map.lngLatToGeodeticCoord(position_3d);
 
-    var topColor = [0, 1, 1, 0.9];
-    var topFaceColor = [0, 1, 1, 0.4];
-    var bottomColor = [0, 0, 1, 0.9];
+    var topColor = [200 / 255, 200 / 255, 200 / 255, 0.9]; //上部渐变
+    var topFaceColor = [190 / 255, 190 / 255, 190 / 255, 0.9]; //顶面颜色
+    var bottomColor = [56 / 255, 56 / 255, 56 / 255, 0.9]; //下部渐变
 
     //添加一个圆柱体
     var addRegularPrism = function(center, segment, deep, height, radius) {
@@ -888,7 +893,7 @@ by.joyan
       object3Dlayer.add(cylinder);
     };
 
-    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -20, 70) //圆柱
+    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -10, 70) //圆柱
   </script>
 
 </body>
