@@ -160,7 +160,7 @@ by.joyan
 
   <!-- 信息卡 -->
   <div class="amap-copyright">
-    <p>-003</p>
+    <p>-004</p>
   </div>
   <div class="infoname">
     <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
@@ -749,10 +749,21 @@ by.joyan
     //菜单
     window.onload = function() {
       var btn = document.getElementById('show-btn'); //菜单按钮
-      var oCon = document.getElementById('show-rs').style;
+      var oCon = document.getElementById('show-rs'); //弹出选卡
+      var other = document.getElementById('container');
       btn.onclick = function() {
-        oCon.display = oCon.display == 'block' ? 'none' : 'block';
-        oCon.display = oCon.display == 'block' ? btn.innerHTML = '<p style="font-size:13px">&ensp;收起&ensp;</p>' : btn.innerHTML = '<p style="font-size:13px">&ensp;展开地块列表&ensp;</p>';
+        if (oCon.style.display == "block") {
+          oCon.style.display = "none";
+          btn.innerHTML = '<p style="font-size:13px">&ensp;展开地块列表&ensp;</p>';
+        } else {
+          oCon.style.display = "block";
+          btn.innerHTML = '<p style="font-size:13px">&ensp;收起&ensp;</p>';
+        }
+      }
+      other.onclick = function() {
+        if (oCon.style.display == "block") {
+          oCon.style.display = "none";
+        }
       }
     };
 
