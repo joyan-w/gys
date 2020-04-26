@@ -151,7 +151,7 @@ by.joyan
       height: 2rem;
     }
 
-    .amap-info-close{
+    .amap-info-close {
       top: 15px;
     }
 
@@ -168,7 +168,7 @@ by.joyan
       text-align: center;
     }
 
-    /* 统计表格样式
+    /* 统计表格样式 */
     .all-info {
       margin: auto;
       position: fixed;
@@ -180,7 +180,7 @@ by.joyan
       box-shadow: 8px 12px 10px 5px rgba(0, 0, 0, .3);
       padding: 12px;
       display: none;
-    }*/
+    }
   </style>
 
 </head>
@@ -191,7 +191,7 @@ by.joyan
 
   <!-- 信息卡 -->
   <div class="amap-copyright">
-    <p>--20200425-002</p>
+    <p>--20200425-005</p>
   </div>
   <div class="infoname">
     <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
@@ -233,8 +233,9 @@ by.joyan
     </button>
   </div>
 
-  <!-- 统计表格
+  <!-- 统计表格 -->
   <div class='all-info' id="all">
+    <h4 style="text-align:center;"><b>项目规划总览</b></h4>
     <table border='1' bordercolor='gray' cellpadding='5px' cellspacing='0' ;>
       <tr>
         <td width='35%' colspan='2'>泊位数</td>
@@ -261,7 +262,7 @@ by.joyan
         </td>
       </tr>
     </table>
-  </div> -->
+  </div>
 
 
   <!-- 加载地图JSAPI脚本 -->
@@ -597,7 +598,7 @@ by.joyan
       position: position_3d,
       height: 5,
       verticalAlign: 'bottom',
-      zooms: [19, 20],
+      zooms: [18, 20],
       map: map,
       style: {
         'background-color': 'rgba(114, 124, 245, 1)',
@@ -642,7 +643,7 @@ by.joyan
     function openInfo09() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>C09地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img style='float:center;' src='https://iqianhai.sznews.com/pic/2017-03/20/IMG3c970e4e89ab4400170055.jpg' width='260px' /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 54 x 120 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>空地，周边简单绿化</td></tr>");
@@ -718,7 +719,7 @@ by.joyan
     function openInfo26() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>D26地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img style='float:center;' src='https://5b0988e595225.cdn.sohucs.com/images/20190725/ae7b5034fc7b404aaddad5b62306b548.jpeg' width='260px' /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 51 x 58 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>地面硬化，上盖板房</td></tr>");
@@ -760,7 +761,7 @@ by.joyan
     function openInfo28() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>D28地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img style='float:center;' src='https://5b0988e595225.cdn.sohucs.com/images/20190725/ae7b5034fc7b404aaddad5b62306b548.jpeg' width='260px' /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 51 x 58 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>地面硬化，上盖少量板房</td></tr>");
@@ -794,25 +795,6 @@ by.joyan
       });
       infoWindow.open(map, position_3d); //在指定位置打开信息窗体
     }
-
-    function openInfoAll() {
-      var info = []; //构建信息窗体中显示的内容
-      info.push("<div class='input-card content-window-card'style='text-align:center;'><h3>项目总览</h3>");
-      info.push("<div style='padding:0px 0px 15px 0px;'>");
-      info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
-      info.push("<tr><td width='35%' colspan='2'>停车位数</td><td>500 个</td></tr>");
-      info.push("<tr><td rowspan='3' width='8%'>其中</td><td>充电车位</td><td>152 个</td></tr>");
-      info.push("<tr><td>普通车位</td><td>248 个</td></tr>");
-      info.push("<tr><td>地下车位</td><td>64 个</td></tr></table></div></div>");
-      infoWindow = new AMap.InfoWindow({
-        content: info.join(""), //使用默认信息窗体框样式，显示信息内容
-        closeWhenClickMap: true, //鼠标点击地图后关闭信息窗体
-        autoMove: true, //自动居中
-        offset: new AMap.Pixel(0, -45) //窗体偏移
-      });
-      infoWindow.open(map, [118.195471, 24.488023]); //在指定位置打开信息窗体
-    }
-
 
     //路径
     var path1 = [
@@ -960,19 +942,19 @@ by.joyan
       map.setZoom(17); //显示级别
       map.setRotation(0); //平面视角
       map.setPitch(0); //俯仰角
-      openInfoAll(); //打开信息窗体
+      if (document.getElementById('all').style.display == "block") {
+        document.getElementById('all').style.display = "none";
+      } else {
+        document.getElementById('all').style.display = "block";
+      };
       setTimeout(function() {
         log.success("地块总览"); //弹窗提示
       }, 0.3 * 1000); //延迟0.3秒加载
     }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
 
-    /*
-
     document.getElementById('close-all').onclick = function() {
       document.getElementById('all').style.display = "none";
-    } //信息卡关闭按钮 
-
-    */
+    } //信息卡关闭按钮
 
     //模型
     var object3Dlayer = new AMap.Object3DLayer({
