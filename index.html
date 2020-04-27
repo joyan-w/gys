@@ -161,6 +161,7 @@ by.joyan
       width: 260px;
       font-size: 12px;
       border-collapse: collapse;
+      margin: auto;
     }
 
     /* 弹窗表格行高 */
@@ -170,15 +171,24 @@ by.joyan
 
     /* 统计表格样式 */
     .all-info {
-      margin: auto;
       position: fixed;
-      z-index: 500;
-      top: 40%;
-      left: 35%;
+      /*flex 布局*/
+      display: flex;
+      /*实现垂直居中*/
+      align-items: center;
+      /*实现水平居中*/
+      justify-content: center;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 35%;
+      width: 35%;
+      margin: 0 auto;
+      padding: 2rem 0;
+      margin-bottom: 1rem;
       background-color: white;
       border-radius: 0.3rem;
       box-shadow: 8px 12px 10px 5px rgba(0, 0, 0, .3);
-      padding: 12px;
       display: none;
     }
   </style>
@@ -191,7 +201,7 @@ by.joyan
 
   <!-- 信息卡 -->
   <div class="amap-copyright">
-    <p>--20200425-005</p>
+    <p>--20200425-001</p>
   </div>
   <div class="infoname">
     <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
@@ -235,8 +245,12 @@ by.joyan
 
   <!-- 统计表格 -->
   <div class='all-info' id="all">
-    <h4 style="text-align:center;"><b>项目规划总览</b></h4>
-    <table border='1' bordercolor='gray' cellpadding='5px' cellspacing='0' ;>
+    <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' rules="all">
+      <tr>
+        <td colspan='3'>
+          <p style="font-size:14px;"><b>项目规划总览</b></p>
+        </td>
+      </tr>
       <tr>
         <td width='35%' colspan='2'>泊位数</td>
         <td>共计 500 个</td>
@@ -254,10 +268,8 @@ by.joyan
         <td>地下车位</td>
         <td>64 个</td>
       </tr>
-    </table><br>
-    <table>
       <tr>
-        <td>
+        <td colspan='3'>
           <button class="btn" id="close-all">&ensp;X&ensp;</button>
         </td>
       </tr>
@@ -947,9 +959,6 @@ by.joyan
       } else {
         document.getElementById('all').style.display = "block";
       };
-      setTimeout(function() {
-        log.success("地块总览"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
     }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
 
     document.getElementById('close-all').onclick = function() {
