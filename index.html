@@ -177,7 +177,8 @@ by.joyan
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;/* 允许穿透下层 */
+      pointer-events: none;
+      /* 允许穿透下层 */
       display: none;
     }
 
@@ -191,7 +192,8 @@ by.joyan
       background-color: white;
       border-radius: 0.3rem;
       box-shadow: 8px 12px 10px 5px rgba(0, 0, 0, .3);
-      pointer-events:auto;/* 不允许穿透下层 */
+      pointer-events: auto;
+      /* 不允许穿透下层 */
     }
   </style>
 
@@ -248,12 +250,8 @@ by.joyan
   <!-- 统计表格 -->
   <div class='all-info-f' id="all">
     <div class="all-info-z">
+      <h4 style="font-size:14px;text-align:center;"><b>项目规划总览</b></h4>
       <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' rules="all">
-        <tr>
-          <td colspan='3'>
-            <p style="font-size:14px;"><b>项目规划总览</b></p>
-          </td>
-        </tr>
         <tr>
           <td width='35%' colspan='2'>泊位数</td>
           <td>共计 500 个</td>
@@ -271,12 +269,10 @@ by.joyan
           <td>地下车位</td>
           <td>64 个</td>
         </tr>
-        <tr>
-          <td colspan='3'>
-            <button class="btn" id="close-all">&ensp;X&ensp;</button>
-          </td>
-        </tr>
-      </table>
+      </table><br>
+      <p style="font-size:14px;text-align:center;">
+        <button class="btn" id="close-all">&ensp;X&ensp;</button>
+      </p>
     </div>
   </div>
 
