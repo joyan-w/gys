@@ -170,26 +170,28 @@ by.joyan
     }
 
     /* 统计表格样式 */
-    .all-info {
-      position: fixed;
-      /*flex 布局*/
-      display: flex;
-      /*实现垂直居中*/
-      align-items: center;
-      /*实现水平居中*/
-      justify-content: center;
-      margin: auto;
+    .all-info-f {
+      position: absolute;
+      /*固定定位*/
+      top: 0;
       left: 0;
-      right: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;/* 允许穿透下层 */
+      display: none;
+    }
+
+    .all-info-z {
+      position: relative;
+      display: table;
       top: 35%;
-      width: 35%;
       margin: 0 auto;
-      padding: 2rem 0;
+      padding: 1.5rem;
       margin-bottom: 1rem;
       background-color: white;
       border-radius: 0.3rem;
       box-shadow: 8px 12px 10px 5px rgba(0, 0, 0, .3);
-      display: none;
+      pointer-events:auto;/* 不允许穿透下层 */
     }
   </style>
 
@@ -244,36 +246,38 @@ by.joyan
   </div>
 
   <!-- 统计表格 -->
-  <div class='all-info' id="all">
-    <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' rules="all">
-      <tr>
-        <td colspan='3'>
-          <p style="font-size:14px;"><b>项目规划总览</b></p>
-        </td>
-      </tr>
-      <tr>
-        <td width='35%' colspan='2'>泊位数</td>
-        <td>共计 500 个</td>
-      </tr>
-      <tr>
-        <td rowspan='3' width='8%'>其中</td>
-        <td>充电车位</td>
-        <td>152 个</td>
-      </tr>
-      <tr>
-        <td>地面车位</td>
-        <td>284 个</td>
-      </tr>
-      <tr>
-        <td>地下车位</td>
-        <td>64 个</td>
-      </tr>
-      <tr>
-        <td colspan='3'>
-          <button class="btn" id="close-all">&ensp;X&ensp;</button>
-        </td>
-      </tr>
-    </table>
+  <div class='all-info-f' id="all">
+    <div class="all-info-z">
+      <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' rules="all">
+        <tr>
+          <td colspan='3'>
+            <p style="font-size:14px;"><b>项目规划总览</b></p>
+          </td>
+        </tr>
+        <tr>
+          <td width='35%' colspan='2'>泊位数</td>
+          <td>共计 500 个</td>
+        </tr>
+        <tr>
+          <td rowspan='3' width='8%'>其中</td>
+          <td>充电车位</td>
+          <td>152 个</td>
+        </tr>
+        <tr>
+          <td>地面车位</td>
+          <td>284 个</td>
+        </tr>
+        <tr>
+          <td>地下车位</td>
+          <td>64 个</td>
+        </tr>
+        <tr>
+          <td colspan='3'>
+            <button class="btn" id="close-all">&ensp;X&ensp;</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 
 
