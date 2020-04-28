@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+本页面基于高德开放平台制作，用于开发学习。
+by.joyan
+ -->
 <html lang="en" dir="ltr">
 
 <head>
@@ -16,6 +20,10 @@
       height: 100%;
       margin: 0px;
       padding: 0px;
+    }
+
+    img {
+      width: 100%;
     }
 
     /* 标题栏 */
@@ -131,7 +139,7 @@
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       padding: 0.75rem 1.25rem;
-      transition: right .3s linear;
+      transition: right .15s linear;
     }
 
     .input-card-rs.show {
@@ -150,7 +158,7 @@
     .content-window-card {
       position: relative;
       width: 23rem;
-      padding: 0.75rem 0 0 1rem;
+      padding: 1rem;
       box-shadow: none;
       bottom: 0;
       left: 0;
@@ -166,12 +174,11 @@
 
     /* 表格 */
     table {
-      width: 260px;
+      width: 100%;
       font-size: 12px;
       border-collapse: collapse;
     }
 
-    /* 表格行高 */
     table td {
       text-align: center;
     }
@@ -182,10 +189,11 @@
       flex-direction: column;
       min-width: 0;
       min-height: 0;
-      padding: 1.25rem 1.25rem;
+      padding: 1.25rem 2rem;
       margin-bottom: 1rem;
       border-radius: .25rem;
       position: absolute;
+      width: 50%;
       left: 50%;
       top: -10%;
       transform: translate(-50%, -50%);
@@ -194,7 +202,7 @@
       margin: 0 auto;
       box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
       text-align: center;
-      transition: top .3s linear;
+      transition: top .15s linear;
     }
 
     .input-card-tj.show {
@@ -209,7 +217,7 @@
 
   <!-- 版本号 -->
   <div class="amap-copyright">
-    <p>--20200425-012</p>
+    <p>--20200425-015</p>
   </div>
 
   <!-- 菜单按钮 -->
@@ -253,7 +261,7 @@
   <!-- 统计表格 -->
   <div class='input-card-tj' id="tb-tj">
     <h4 style="font-size:14px;text-align:center;"><b>项目规划总览</b></h4>
-    <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
+    <table weight='auto' border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
       <tr>
         <td width='35%' colspan='2'>泊位数</td>
         <td>共计 500 个</td>
@@ -318,6 +326,7 @@
         } else {
           tjTb.classList.add("show"); //显示表格
           menuRs.classList.remove("show"); //关闭菜单
+          menuBtn.innerHTML = '<span>菜单</span>';
         }
       };
       tjClose.onclick = function(e) { //统计表格关闭按钮
@@ -821,7 +830,7 @@
     function openInfo09() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>C09地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'><img style='float:center;' src='https://iqianhai.sznews.com/pic/2017-03/20/IMG3c970e4e89ab4400170055.jpg' width='260px' /><br>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img  src='https://iqianhai.sznews.com/pic/2017-03/20/IMG3c970e4e89ab4400170055.jpg'  /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 54 x 120 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>空地，周边简单绿化</td></tr>");
@@ -897,7 +906,7 @@
     function openInfo26() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>D26地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'><img style='float:center;' src='https://5b0988e595225.cdn.sohucs.com/images/20190725/ae7b5034fc7b404aaddad5b62306b548.jpeg' width='260px' /><br>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img  src='https://5b0988e595225.cdn.sohucs.com/images/20190725/ae7b5034fc7b404aaddad5b62306b548.jpeg'  /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 51 x 58 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>地面硬化，上盖板房</td></tr>");
@@ -918,7 +927,7 @@
     function openInfo27() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>D27地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'><img src='https://5b0988e595225.cdn.sohucs.com/images/20181008/6e0f34067e9c47c08ee6cba6a9a4db84.jpeg' width='260px'/><br>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img src='https://5b0988e595225.cdn.sohucs.com/images/20181008/6e0f34067e9c47c08ee6cba6a9a4db84.jpeg'/><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 66 x 40 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>地面简单硬化，部分绿化</td></tr>");
@@ -939,7 +948,7 @@
     function openInfo28() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>D28地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'><img src='https://5b0988e595225.cdn.sohucs.com/images/20190725/ae7b5034fc7b404aaddad5b62306b548.jpeg' width='260px'/><br>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img src='https://5b0988e595225.cdn.sohucs.com/images/20190725/ae7b5034fc7b404aaddad5b62306b548.jpeg' /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 51 x 58 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>地面硬化，上盖少量板房</td></tr>");
@@ -961,7 +970,7 @@
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>沉井式地下智能停车库</h3>");
       info.push("<div style='padding:7px 0px 7px 0px'>");
-      info.push("<div><img  src='https://img.mp.itc.cn/upload/20170609/f48ceb4489c544dcb36b904c97861241_th.jpg' width='260px' /></div><br>");
+      info.push("<div><img  src='https://img.mp.itc.cn/upload/20170609/f48ceb4489c544dcb36b904c97861241_th.jpg'  /></div><br>");
       info.push("<p class='input-item'>地上面积：120 平方米；</p>");
       info.push("<p class='input-item'>层数：地下 4 层；</p>");
       info.push("<p class='input-item'>车位：16 个/层，共计 84 个停车位；</p></div></div>");
