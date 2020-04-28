@@ -23,7 +23,7 @@ by.joyan
     }
 
     img {
-      width: 100%;
+      width: 100%
     }
 
     /* 标题栏 */
@@ -134,12 +134,12 @@ by.joyan
       position: fixed;
       /* 菜单按钮相对页面位置  */
       bottom: 4rem;
-      right: -20%;
+      right: -25%;
       /* 隐藏位置 */
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       padding: 0.75rem 1.25rem;
-      transition: right .15s linear;
+      transition: right .2s linear;
     }
 
     .input-card-rs.show {
@@ -157,8 +157,8 @@ by.joyan
 
     .content-window-card {
       position: relative;
-      width: 23rem;
-      padding: 1rem;
+      width: 25rem;
+      padding: 0.75rem;
       box-shadow: none;
       bottom: 0;
       left: 0;
@@ -170,6 +170,10 @@ by.joyan
 
     .amap-info-close {
       top: 15px;
+    }
+
+    .amap-info-content {
+      padding: 10px;
     }
 
     /* 表格 */
@@ -193,16 +197,16 @@ by.joyan
       margin-bottom: 1rem;
       border-radius: .25rem;
       position: absolute;
-      width: 50%;
+      width: 28rem;
       left: 50%;
-      top: -10%;
+      top: -20%;
       transform: translate(-50%, -50%);
       background-color: white;
       border-width: 0;
       margin: 0 auto;
       box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
       text-align: center;
-      transition: top .15s linear;
+      transition: top .2s linear;
     }
 
     .input-card-tj.show {
@@ -217,7 +221,7 @@ by.joyan
 
   <!-- 版本号 -->
   <div class="amap-copyright">
-    <p>--20200425-015</p>
+    <p>--20200425-016</p>
   </div>
 
   <!-- 菜单按钮 -->
@@ -261,7 +265,7 @@ by.joyan
   <!-- 统计表格 -->
   <div class='input-card-tj' id="tb-tj">
     <h4 style="font-size:14px;text-align:center;"><b>项目规划总览</b></h4>
-    <table weight='auto' border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
+    <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
       <tr>
         <td width='35%' colspan='2'>泊位数</td>
         <td>共计 500 个</td>
@@ -927,7 +931,7 @@ by.joyan
     function openInfo27() {
       var info = []; //构建信息窗体中显示的内容
       info.push("<div class='input-card content-window-card'><h3>D27地块</h3>");
-      info.push("<div style='padding:7px 0px 15px 0px;'><img src='https://5b0988e595225.cdn.sohucs.com/images/20181008/6e0f34067e9c47c08ee6cba6a9a4db84.jpeg'/><br>");
+      info.push("<div style='padding:7px 0px 15px 0px;'><img src='https://5b0988e595225.cdn.sohucs.com/images/20181008/6e0f34067e9c47c08ee6cba6a9a4db84.jpeg' /><br>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 66 x 40 米</td></tr>");
       info.push("<tr><td colspan='2'>地块现状</td><td>地面简单硬化，部分绿化</td></tr>");
