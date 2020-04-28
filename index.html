@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-本页面基于高德开放平台制作，用于开发学习。
-by.joyan
- -->
 <html lang="en" dir="ltr">
 
 <head>
@@ -22,12 +18,61 @@ by.joyan
       padding: 0px;
     }
 
-    .amap-ui-control-layer .iconfont {
-      margin-right: 0px !important
+    /* 标题栏 */
+    .info-title {
+      padding: .75rem 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: .25rem;
+      position: fixed;
+      top: 0rem;
+      background-color: white;
+      width: 50%;
+      min-width: 22rem;
+      border-width: 0;
+      left: 0;
+      right: 0rem;
+      margin: auto;
+      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+    }
+
+    /* 罗盘尺寸，位置 */
+    .amap-controlbar {
+      transform: scale(0.35);
+      -ms-transform: scale(0.35);
+      -webkit-transform: scale(0.35);
+      -o-transform: scale(0.35);
+      -moz-transform: scale(0.3);
+      transform-origin: 0% 0;
+      -ms-transform-origin: 0% 0;
+      -webkit-transform-origin: 0% 0;
+      -o-transform-origin: 0% 0;
+      -moz-transform-origin: 0% 0
+    }
+
+    /* 菜单按钮容器 */
+    .input-card-menubtn {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border-radius: .25rem;
+      width: auto;
+      border-width: 0;
+      border-radius: 10rem;
+      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      position: fixed;
+      /* 菜单按钮相对页面位置  */
+      bottom: 1rem;
+      right: 1rem;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 0rem;
     }
 
     /* 菜单按钮 */
-    .btn-show {
+    .btn-menubtn {
       display: inline-block;
       font-weight: 400;
       text-align: center;
@@ -41,55 +86,31 @@ by.joyan
       transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
       background-color: transparent;
       background-image: none;
-      color: rgba(114, 124, 245, 1);
-      border-color: rgba(114, 124, 245, 1);
-      padding: .25rem .5rem;
+      color: #25A5F7;
+      border-color: #25A5F7;
+      padding: .25rem 1rem;
       line-height: 1.5;
-      border-radius: 1rem;
+      border-radius: 10rem;
       -webkit-appearance: button;
       cursor: pointer;
     }
 
-    .btn-show:hover {
+    .btn-menubtn:hover {
       color: #fff;
-      background-color: rgba(114, 124, 245, 1);
-      border-color: rgba(114, 124, 245, 1);
+      background-color: #25A5F7;
+      border-color: #25A5F7
     }
 
-    .btn-show:hover {
-      text-decoration: none;
+    .btn-menubtn:hover {
+      text-decoration: none
     }
 
-    .btn-show:focus {
+    .btn-menubtn:focus {
       outline: 0;
       box-shadow: none;
     }
 
-    /* 菜单按钮容器 */
-    .input-card-showbtn {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      word-wrap: break-word;
-      background-color: #fff;
-      background-clip: border-box;
-      border-radius: .25rem;
-      width: 22rem;
-      border-width: 0;
-      /* 边框倒角 */
-      border-radius: 10rem;
-      /* 投影颜色及角度 */
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
-      position: fixed;
-      /* 菜单按钮相对页面位置 */
-      bottom: 1.2rem;
-      right: 1.2rem;
-      -ms-flex: 1 1 auto;
-      flex: 1 1 auto;
-      padding: 0rem;
-    }
-
-    /* 弹出选卡 */
+    /* 菜单容器 */
     .input-card-rs {
       display: flex;
       flex-direction: column;
@@ -101,32 +122,20 @@ by.joyan
       width: 22rem;
       border-width: 0;
       border-radius: 0.4rem;
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
       position: fixed;
-      /* 菜单相对页面位置 */
-      bottom: 4.5rem;
-      right: 1.2rem;
+      /* 菜单按钮相对页面位置  */
+      bottom: 4rem;
+      right: -20%;
+      /* 隐藏位置 */
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       padding: 0.75rem 1.25rem;
-      /* 默认不显示 */
-      display: none;
+      transition: right .3s linear;
     }
 
-    /*标题栏*/
-    .infoname {
-      position: fixed;
-      margin: auto;
-      left: 0;
-      right: 0;
-      top: 0rem;
-      width: 50%;
-      padding: .75rem 1.25rem;
-      margin-bottom: 1rem;
-      border-radius: .25rem;
-      background-color: white;
-      border-width: 0;
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+    .input-card-rs.show {
+      right: 1rem;
     }
 
     /*信息窗体样式*/
@@ -155,127 +164,122 @@ by.joyan
       top: 15px;
     }
 
-    /* 弹窗表格 */
+    /* 表格 */
     table {
       width: 260px;
       font-size: 12px;
       border-collapse: collapse;
     }
 
-    /* 弹窗表格行高 */
+    /* 表格行高 */
     table td {
       text-align: center;
     }
 
-    /* 统计表格样式 */
-    .all-info-f {
+    /* 统计表格样式*/
+    .input-card-tj {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: 1.25rem 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: .25rem;
       position: absolute;
-      /*固定定位*/
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      /* 允许穿透下层 */
-      display: none;
+      left: 50%;
+      top: -10%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-width: 0;
+      margin: 0 auto;
+      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      text-align: center;
+      transition: top .3s linear;
     }
 
-    .all-info-z {
-      position: relative;
-      display: table;
-      top: 30%;
-      margin: 0 auto;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      background-color: white;
-      border-radius: 0.3rem;
-      box-shadow: 8px 12px 10px 5px rgba(0, 0, 0, .3);
-      pointer-events: auto;
-      /* 不允许穿透下层 */
+    .input-card-tj.show {
+      top: 40%;
     }
   </style>
-
 </head>
 
 <body>
   <!-- 地图容器 -->
   <div id="container"></div>
 
-  <!-- 信息卡 -->
+  <!-- 版本号 -->
   <div class="amap-copyright">
-    <p>--20200425-011</p>
-  </div>
-  <div class="infoname">
-    <p style="text-align: center;letter-spacing:2px;/*字符间距*/"><b>观音山商务区停车升级项目</b></p>
+    <p>--20200425-012</p>
   </div>
 
+  <!-- 菜单按钮 -->
+  <div class="input-card-menubtn">
+    <button class="btn-menubtn" id="menu-btn"><span>菜单</span></button>
+  </div>
 
-  <!-- 点击选卡 -->
-  <div class="input-card-rs" id="show-rs" style="width: auto">
-    <h4><b>地块列表</b></h4>
+  <!-- 菜单 -->
+  <div class="input-card-rs" id="menu-rs" style="width: auto">
     <div class="input-item">
-      <button class="btn" id="reset-bounds">地块总览</button>
+      <button class="btn" id="menu-rs-all">地块总览</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="all-btn">规划统计</button>
+      <button class="btn" id="menu-rs-1">规划统计</button>
     </div>
     <hr>
     <div class="input-item">
-      <button class="btn" id="pantoBtn09">C09地块</button>
+      <button class="btn" id="menu-rs-C09">C09地块</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="pantoBtn23">D23地块</button>
+      <button class="btn" id="menu-rs-D23">D23地块</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="pantoBtn24">D24地块</button>
+      <button class="btn" id="menu-rs-D24">D24地块</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="pantoBtn25">D25地块</button>
+      <button class="btn" id="menu-rs-D25">D25地块</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="pantoBtn26">D26地块</button>
+      <button class="btn" id="menu-rs-D26">D26地块</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="pantoBtn27">D27地块</button>
+      <button class="btn" id="menu-rs-D27">D27地块</button>
     </div>
     <div class="input-item">
-      <button class="btn" id="pantoBtn28">D28地块</button>
+      <button class="btn" id="menu-rs-D28">D28地块</button>
     </div>
-  </div>
-  <!-- 菜单按钮 -->
-  <div class="input-card-showbtn" style="width: auto">
-    <button class="btn-show" id="show-btn">
-      <p style="font-size:13px">&ensp;展开地块列表&ensp;</p>
-    </button>
+
   </div>
 
   <!-- 统计表格 -->
-  <div class='all-info-f' id="all">
-    <div class="all-info-z">
-      <h4 style="font-size:14px;text-align:center;"><b>项目规划总览</b></h4>
-      <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' rules="all">
-        <tr>
-          <td width='35%' colspan='2'>泊位数</td>
-          <td>共计 500 个</td>
-        </tr>
-        <tr>
-          <td rowspan='3' width='8%'>其中</td>
-          <td>充电车位</td>
-          <td>152 个</td>
-        </tr>
-        <tr>
-          <td>地面车位</td>
-          <td>284 个</td>
-        </tr>
-        <tr>
-          <td>地下车位</td>
-          <td>64 个</td>
-        </tr>
-      </table><br>
-      <p style="font-size:14px;text-align:center;">
-        <button class="btn" id="close-all">&ensp;X&ensp;</button>
-      </p>
-    </div>
+  <div class='input-card-tj' id="tb-tj">
+    <h4 style="font-size:14px;text-align:center;"><b>项目规划总览</b></h4>
+    <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
+      <tr>
+        <td width='35%' colspan='2'>泊位数</td>
+        <td>共计 500 个</td>
+      </tr>
+      <tr>
+        <td rowspan='3' width='8%'>其中</td>
+        <td>充电车位</td>
+        <td>152 个</td>
+      </tr>
+      <tr>
+        <td>地面车位</td>
+        <td>284 个</td>
+      </tr>
+      <tr>
+        <td>地下车位</td>
+        <td>64 个</td>
+      </tr>
+    </table><br>
+    <p style="font-size:14px;">
+      <button class="btn" id="close-tj">&ensp;X&ensp;</button>
+    </p>
+  </div>
+
+  <!-- 标题栏 -->
+  <div class="info-title">
+    <p style="text-align: center;letter-spacing:2px;/*字符间距*/" ;><b>项目测试</b></p>
   </div>
 
 
@@ -285,18 +289,207 @@ by.joyan
   <!-- UI组件库 1.0 -->
   <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 
-  <!-- 定义脚本 -->
+  <!-- 按钮脚本 -->
+  <script>
+    window.onload = function() {
+      var menuBtn = document.getElementById("menu-btn");
+      var menuRs = document.getElementById("menu-rs");
+      var tjbgBtn = document.getElementById("menu-rs-1");
+      var tjTb = document.getElementById("tb-tj");
+      var tjClose = document.getElementById("close-tj");
+
+      //菜单按钮事件
+      menuBtn.onclick = function(e) {
+        window.event ? window.event.cancelBubble = true : e.stopPropagation();
+        if (menuRs.classList.contains("show")) {
+          menuRs.classList.remove("show");
+          menuBtn.innerHTML = '<span>菜单</span>';
+        } else {
+          menuRs.classList.add("show");
+          menuBtn.innerHTML = '<span>关闭</span>';
+        }
+      };
+
+      //统计表格事件
+      tjbgBtn.onclick = function(e) { //统计表格按钮
+        window.event ? window.event.cancelBubble = true : e.stopPropagation();
+        if (tjTb.classList.contains("show")) {
+          tjTb.classList.remove("show");
+        } else {
+          tjTb.classList.add("show"); //显示表格
+          menuRs.classList.remove("show"); //关闭菜单
+        }
+      };
+      tjClose.onclick = function(e) { //统计表格关闭按钮
+        window.event ? window.event.cancelBubble = true : e.stopPropagation();
+        tjTb.classList.remove("show"); //关闭统计表格
+        if (menuRs.classList.contains("show")) {
+          menuRs.classList.remove("show"); //判断，关闭菜单弹出栏
+        }
+      };
+
+      //点击以外区域关闭
+      document.onclick = function(e) { //点菜单外区域隐藏
+        var e = e || window.event; //浏览器兼容性
+        var elem = e.target || e.srcElement;
+        if (menuRs.classList.contains("show")) {
+          menuRs.classList.remove("show"); //关闭菜单弹出栏
+          menuBtn.innerHTML = '<span>菜单</span>';
+        }
+
+        while (elem) { //循环判断至跟节点，防止点击的是div#tb-tj子元素
+          if (elem.id && elem.id == 'tb-tj') {
+            return;
+          }
+          elem = elem.parentNode;
+        }
+        if (tjTb.classList.contains("show")) {
+          tjTb.classList.remove("show");
+        }
+      };
+    };
+
+    //地图视角点击选卡
+    AMap.event.addDomListener(document.getElementById('menu-rs-C09'), 'click', function() {
+      map.panTo([118.195368, 24.490729]); //移动至指定点
+      map.setZoom(19); //显示级别
+      map.setRotation(50); //平面视角
+      map.setPitch(73); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：C09地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-D23'), 'click', function() {
+      map.panTo([118.19408, 24.48716]); //移动至指定点
+      map.setZoom(19); //显示级别
+      map.setRotation(-55); //平面视角
+      map.setPitch(50); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D23地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-D24'), 'click', function() {
+      map.panTo([118.194083, 24.485879]); //移动至指定点
+      map.setZoom(19); //显示级别
+      map.setRotation(-157); //平面视角
+      map.setPitch(50); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D24地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-D25'), 'click', function() {
+      map.panTo([118.19538, 24.486694]); //移动至指定点
+      map.setZoom(19.5); //显示级别
+      map.setRotation(37.4); //平面视角
+      map.setPitch(58); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D25地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-D26'), 'click', function() {
+      map.panTo([118.195239, 24.486206]); //移动至指定点
+      map.setZoom(19.5); //显示级别
+      map.setRotation(140); //平面视角
+      map.setPitch(57); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D26地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-D27'), 'click', function() {
+      map.panTo([118.196109, 24.486631]); //移动至指定点
+      map.setZoom(19.5); //显示级别
+      map.setRotation(-24); //平面视角
+      map.setPitch(46); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D27地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-D28'), 'click', function() {
+      map.panTo([118.196079, 24.48597]); //移动至指定点
+      map.setZoom(19.5); //显示级别
+      map.setRotation(-173); //平面视角
+      map.setPitch(62); //俯仰角
+      setTimeout(function() {
+        log.success("当前视角：D28地块"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //移动到，绑定按钮事件
+
+    AMap.event.addDomListener(document.getElementById('menu-rs-all'), 'click', function() {
+      map.panTo([118.195471, 24.488023]); //移动至指定点
+      map.setZoom(17); //显示级别
+      map.setRotation(0); //平面视角
+      map.setPitch(0); //俯仰角
+      setTimeout(function() {
+        log.success("地块总览"); //弹窗提示
+      }, 0.3 * 1000); //延迟0.3秒加载
+    }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
+  </script>
+
+  <!-- 地图脚本 -->
   <script>
     //定义楼快样式
     var buildingLayer = new AMap.Buildings({
       zIndex: 130,
       merge: false,
       sort: false,
-      zooms: [17, 20]
+      zooms: [17, 20],
+      heightFactor: 1.5 //1.5倍于默认高度，3D下有效
     });
-    var options = {
+
+    var buildoptions = {
       hideWithoutStyle: false, //是否隐藏设定区域外的楼块
-      areas: [{ //围栏2:D25
+      areas: [{ //围栏1:C09
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.195298, 24.490462],
+            [118.195408, 24.48992],
+            [118.196591, 24.490144],
+            [118.196429, 24.490686]
+          ]
+        },
+        { //围栏1:D23
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.193754, 24.486772],
+            [118.193768, 24.486994],
+            [118.193813, 24.487158],
+            [118.193856, 24.487307],
+            [118.193929, 24.487495],
+            [118.194004, 24.487646],
+            [118.19406, 24.487746],
+            [118.194264, 24.487844],
+            [118.194323, 24.48782],
+            [118.194248, 24.486741]
+          ]
+        },
+        { //围栏1:D24
+          visible: false, //建筑不可见
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
+          path: [
+            [118.19381, 24.486522],
+            [118.193807, 24.486339],
+            [118.193836, 24.48607],
+            [118.193903, 24.48578],
+            [118.194005, 24.485475],
+            [118.194067, 24.485326],
+            [118.194139, 24.485267],
+            [118.194156, 24.485304],
+            [118.194215, 24.486461],
+            [118.19418, 24.486512]
+          ]
+        },
+        { //围栏2:D25
           color1: 'ff99ff00',
           color2: 'ff999900',
           path: [
@@ -356,55 +549,10 @@ by.joyan
             [118.196438, 24.486316]
           ]
         },
-        { //围栏1:D23
-          visible: false, //建筑不可见
-          color1: 'ffffff00', //楼顶颜色
-          color2: 'ffffcc00', //楼面颜色
-          path: [
-            [118.193754, 24.486772],
-            [118.193768, 24.486994],
-            [118.193813, 24.487158],
-            [118.193856, 24.487307],
-            [118.193929, 24.487495],
-            [118.194004, 24.487646],
-            [118.19406, 24.487746],
-            [118.194264, 24.487844],
-            [118.194323, 24.48782],
-            [118.194248, 24.486741]
-          ]
-        },
-        { //围栏1:D24
-          visible: false, //建筑不可见
-          color1: 'ffffff00', //楼顶颜色
-          color2: 'ffffcc00', //楼面颜色
-          path: [
-            [118.19381, 24.486522],
-            [118.193807, 24.486339],
-            [118.193836, 24.48607],
-            [118.193903, 24.48578],
-            [118.194005, 24.485475],
-            [118.194067, 24.485326],
-            [118.194139, 24.485267],
-            [118.194156, 24.485304],
-            [118.194215, 24.486461],
-            [118.19418, 24.486512]
-          ]
-        },
-        { //围栏1:C09
-          visible: false, //建筑不可见
-          color1: 'ffffff00', //楼顶颜色
-          color2: 'ffffcc00', //楼面颜色
-          path: [
-            [118.195298, 24.490462],
-            [118.195408, 24.48992],
-            [118.196591, 24.490144],
-            [118.196429, 24.490686]
-          ]
-        },
-        { //周边建筑
+        /*{ //周边建筑
           //visible: false, //建筑不可见
-          color1: 'ffEE0000', //楼顶颜色
-          color2: 'ff330000', //楼面颜色
+          color1: 'ffffff00', //楼顶颜色
+          color2: 'ffffcc00', //楼面颜色
           path: [
             [118.195134, 24.487325],
             [118.195109, 24.486842],
@@ -416,10 +564,10 @@ by.joyan
             [118.19753, 24.48628],
             [118.197396, 24.487627]
           ]
-        },
+        },*/
       ]
     };
-    buildingLayer.setStyle(options); //此配色优先级高于自定义mapStyle
+    buildingLayer.setStyle(buildoptions); //此配色优先级高于自定义mapStyle
 
     //初始化地图
     var map = new AMap.Map('container', {
@@ -445,56 +593,73 @@ by.joyan
       ]
     });
 
+    //其他插件载入
+    AMap.plugin([
+        'AMap.ControlBar', //3D 罗盘控制
+      ],
+      function() {
+        map.addControl(new AMap.ControlBar({
+          position: {
+            left: '10px',
+            top: '10px'
+          }
+        }));
+      });
+
     //地面形状
-    new AMap.Polygon({
+    new AMap.Polygon({ //C09
+      //fillColor: 'green',
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[0].path,
+      path: buildoptions.areas[0].path,
       map: map
-    }) //D25
-    new AMap.Polygon({
+    })
+    new AMap.Polygon({ //D23
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[1].path,
+      path: buildoptions.areas[1].path,
       map: map
-    }) //D26
-    new AMap.Polygon({
+    })
+    new AMap.Polygon({ //D24
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[2].path,
+      path: buildoptions.areas[2].path,
       map: map
-    }) //D27
-    new AMap.Polygon({
+    })
+    new AMap.Polygon({ //D25
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[3].path,
+      path: buildoptions.areas[3].path,
       map: map
-    }) //D28
-    new AMap.Polygon({
+    })
+    new AMap.Polygon({ //D26
+      //fillColor: 'green',
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[4].path,
+      path: buildoptions.areas[4].path,
       map: map
-    }) //D23
-    new AMap.Polygon({
+    })
+    new AMap.Polygon({ //D27
+      //fillColor: 'green',
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[5].path,
+      path: buildoptions.areas[5].path,
       map: map
-    }) //D24
-    new AMap.Polygon({
+    })
+    new AMap.Polygon({ //D28
+      //fillColor: 'green',
       bubble: true,
       fillOpacity: 0.4,
       strokeWeight: 1,
-      path: options.areas[6].path,
+      path: buildoptions.areas[6].path,
       map: map
-    }) //D24
+    })
 
     //坐标集合
     var path09 = [118.195939, 24.490316];
@@ -626,7 +791,6 @@ by.joyan
       }
     })
 
-    var infoallbtn = document.getElementById('reset-bounds');
     //监听点击text，打开信息窗体
     AMap.event.addListener(C09, 'click', function() {
       openInfo09(); //打开信息窗体
@@ -695,7 +859,7 @@ by.joyan
 
     function openInfo24() {
       var info = []; //构建信息窗体中显示的内容
-      info.push("<div class='input-card content-window-card'><h3><s>D274地块</s><span style='font-size:11px;color:#F00;'>&ensp;&ensp;暂不考虑建设</span></h3>");
+      info.push("<div class='input-card content-window-card'><h3><s>D24地块</s><span style='font-size:11px;color:#F00;'>&ensp;&ensp;暂不考虑建设</span></h3>");
       info.push("<div style='padding:7px 0px 15px 0px;'>");
       info.push("<table  border='1' bordercolor='gray' cellpadding='5px' cellspacing='0';>");
       info.push("<tr><td width='25%' colspan='2'>地块大小</td><td>约 3777 平方米</td></tr>");
@@ -849,134 +1013,7 @@ by.joyan
 
     map.setFitView()
 
-    //其他插件载入
-    AMap.plugin([
-        'AMap.ControlBar', //3D 罗盘控制
-      ],
-      function() {
-        map.addControl(new AMap.ControlBar());
-      });
-
-
-    //菜单
-    window.onload = function() {
-      var btn = document.getElementById('show-btn'); //菜单按钮
-      var oCon = document.getElementById('show-rs'); //弹出选卡
-      var other = document.getElementById('container');
-      btn.onclick = function() {
-        if (oCon.style.display == "block") {
-          oCon.style.display = "none";
-          btn.innerHTML = '<p style="font-size:13px">&ensp;展开地块列表&ensp;</p>';
-        } else {
-          oCon.style.display = "block";
-          btn.innerHTML = '<p style="font-size:13px">&ensp;收起&ensp;</p>';
-        }
-      }
-      other.onclick = function() {
-        if (oCon.style.display == "block") {
-          oCon.style.display = "none";
-          btn.innerHTML = '<p style="font-size:13px">&ensp;展开地块列表&ensp;</p>';
-        }
-      }
-    };
-
-    //点击选卡
-    AMap.event.addDomListener(document.getElementById('pantoBtn09'), 'click', function() {
-      map.panTo([118.195368, 24.490729]); //移动至指定点
-      map.setZoom(19); //显示级别
-      map.setRotation(50); //平面视角
-      map.setPitch(73); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：C09地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('pantoBtn23'), 'click', function() {
-      map.panTo([118.19408, 24.48716]); //移动至指定点
-      map.setZoom(19); //显示级别
-      map.setRotation(-55); //平面视角
-      map.setPitch(50); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：D23地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('pantoBtn24'), 'click', function() {
-      map.panTo([118.194083, 24.485879]); //移动至指定点
-      map.setZoom(19); //显示级别
-      map.setRotation(-157); //平面视角
-      map.setPitch(50); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：D24地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('pantoBtn25'), 'click', function() {
-      map.panTo([118.19538, 24.486694]); //移动至指定点
-      map.setZoom(19.5); //显示级别
-      map.setRotation(37.4); //平面视角
-      map.setPitch(58); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：D25地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('pantoBtn26'), 'click', function() {
-      map.panTo([118.195239, 24.486206]); //移动至指定点
-      map.setZoom(19.5); //显示级别
-      map.setRotation(140); //平面视角
-      map.setPitch(57); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：D26地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('pantoBtn27'), 'click', function() {
-      map.panTo([118.196109, 24.486631]); //移动至指定点
-      map.setZoom(19.5); //显示级别
-      map.setRotation(-24); //平面视角
-      map.setPitch(46); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：D27地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('pantoBtn28'), 'click', function() {
-      map.panTo([118.196079, 24.48597]); //移动至指定点
-      map.setZoom(19.5); //显示级别
-      map.setRotation(-173); //平面视角
-      map.setPitch(62); //俯仰角
-      setTimeout(function() {
-        log.success("当前视角：D28地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //移动到，绑定按钮事件
-
-    AMap.event.addDomListener(document.getElementById('reset-bounds'), 'click', function() {
-      map.panTo([118.195471, 24.488023]); //移动至指定点
-      map.setZoom(17); //显示级别
-      map.setRotation(0); //平面视角
-      map.setPitch(0); //俯仰角
-      setTimeout(function() {
-        log.success("地块总览"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
-    }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
-
-    AMap.event.addDomListener(document.getElementById('all-btn'), 'click', function() {
-      if (document.getElementById('all').style.display == "block") {
-        document.getElementById('all').style.display = "none";
-      } else {
-        document.getElementById('all').style.display = "block";
-        document.getElementById('show-rs').style.display = "none";
-        document.getElementById('show-btn').innerHTML = '<p style="font-size:13px">&ensp;展开地块列表&ensp;</p>';
-      };
-    }); //规划信息表绑定
-
-    document.getElementById('close-all').onclick = function() {
-      document.getElementById('all').style.display = "none";
-    } //信息卡关闭按钮
-
-
-    //模型
+    //3D模型
     var object3Dlayer = new AMap.Object3DLayer({
       zooms: [17, 20]
     });
@@ -1034,7 +1071,6 @@ by.joyan
 
     addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -10, 70) //圆柱
   </script>
-
 </body>
 
 </html>
