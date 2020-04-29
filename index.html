@@ -9,6 +9,7 @@ by.joyan
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <link rel="stylesheet" href="./iconfont.css">
   <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
   <title>中铁科建城市停车</title>
   <style>
@@ -210,7 +211,7 @@ by.joyan
       position: absolute;
       width: 50%;
       left: 50%;
-      top: -32%;
+      top: -36%;
       transform: translate(-50%, 0%);
       background-color: white;
       border-width: 0;
@@ -297,13 +298,13 @@ by.joyan
       flex-direction: column;
       min-width: 0;
       min-height: 0;
-      padding: 2rem 2rem 1.25rem 2rem;
+      padding: 2rem;
       margin-bottom: 1rem;
       border-radius: .25rem;
       position: absolute;
-      width: 80%;
+      width: 324px;
       left: 50%;
-      top: 10%;
+      top: 35%;
       transform: translate(-50%, 0%);
       background-color: white;
       border-width: 0;
@@ -311,7 +312,7 @@ by.joyan
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       text-align: center;
       line-height: 18px;
-      font-size: 10px;
+      font-size: 12px;
       display: none;
     }
   </style>
@@ -410,14 +411,42 @@ by.joyan
     <p><b>项目测试</b></p>
   </div>
 
+  <!-- 手机提示 -->
   <div class="mobile-dp">
-    <p>这是手机</p>
+    <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center' align='center'>
+      <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作指南<b></h4>
+      <tr>
+        <td><span class="iconfont icon-dragdown"></span></td>
+        <td style="text-align: left;">双指上下滑动调整俯仰角</td>
+      </tr>
+      <tr>
+        <td><span class="iconfont icon-pinch"></span></td>
+        <td style="text-align: left;">双指开合调整大小</td>
+      </tr>
+      <tr>
+        <td><span class="iconfont icon-rotate01"></span></td>
+        <td style="text-align: left;">双指旋转调整视角</td>
+      </tr>
+      <tr>
+        <td><span class="iconfont icon-righthand1pinch"></td>
+        <td style="text-align: left;">单击右下角图标展开列表</td>
+      </tr>
+      <tr>
+        <td><span class="iconfont icon-doubletap"></span></td>
+        <td style="text-align: left;">双击左上角罗盘恢复水平视角</td>
+      </tr>
+      <tr>
+        <td><span class="iconfont icon-tap"></span></td>
+        <td style="text-align: left;">地图标签查看详细信息</td>
+      </tr>
+    </table>
   </div>
 
+  <!-- 手机提示脚本 -->
   <script>
     try {
       if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        mobile.style.display="block";
+        mobile.style.display = "block";
       }
     }
   </script>
