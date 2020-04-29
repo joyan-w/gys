@@ -134,7 +134,7 @@ by.joyan
       background-color: #fff;
       background-clip: border-box;
       border-radius: .25rem;
-      width: 22rem;
+      width: auto;
       border-width: 0;
       border-radius: 0.4rem;
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
@@ -219,6 +219,67 @@ by.joyan
     .input-card-tj.show {
       top: 30%;
     }
+
+    /* copyright */
+    /* 版本信息国产，影响移动端观看，copyright&logo移动至专用信息卡 */
+    .amap-copyright {
+      display: none !important;
+    }
+
+    .amap-logo {
+      display: none !important;
+    }
+
+    .amap-logo-2 img {
+      width: 73px !important;
+      height: 20px !important;
+      border: 0;
+      vertical-align: baseline !important;
+      margin: 15px 0 0 0;
+    }
+
+    .copyright-btn {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border-radius: .25rem;
+      width: auto;
+      border-width: 0;
+      border-radius: 10rem;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+      position: fixed;
+      /* 菜单按钮相对页面位置  */
+      bottom: 1rem;
+      left: 1rem;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+    }
+
+    .input-card-copyright-menu {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: 2rem 0rem;
+      margin-bottom: 1rem;
+      border-radius: .25rem;
+      position: absolute;
+      width: 30%;
+      left: 50%;
+      top: 35%;
+      transform: translate(-50%, 0%);
+      background-color: white;
+      border-width: 0;
+      margin: 0 auto;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+      text-align: center;
+      line-height: 18px;
+      color: grey;
+      display: none;
+    }
   </style>
 </head>
 
@@ -226,9 +287,23 @@ by.joyan
   <!-- 地图容器 -->
   <div id="container"></div>
 
-  <!-- 版本号 -->
-  <div class="amap-copyright">
-    <p>--20200429-001</p>
+  <!-- copyright按钮 -->
+  <div class="copyright-btn">
+    <button class="btn-menubtn" id=""><i>i</i></button>
+  </div>
+
+  <!-- copyright弹出-->
+  <div class="input-card-copyright-menu" id="copyright-menu">
+    <p style="letter-spacing: 1px;">地图基础数据及卫星图片<br>源于高德开放平台<br>Powered by lbs.amap<br>& AutoNavi-JavaScript-API</p>
+    <a href="#" class="amap-logo-2">
+      <img src="https://webapi.amap.com/theme/v1.3/logo@1x.png">
+    </a>
+    <div>
+      © 2020 AutoNavi<span class="amap-mcode">- GS(2019)5392号</span>
+    </div><br>
+    <div>
+      <button class="btn" id="copyright-close">&ensp;&ensp;X&ensp;&ensp;</button>
+    </div>
   </div>
 
   <!-- 菜单按钮 -->
@@ -237,7 +312,7 @@ by.joyan
   </div>
 
   <!-- 菜单 -->
-  <div class="input-card-rs" id="menu-rs" style="width: auto">
+  <div class="input-card-rs" id="menu-rs">
     <div class="input-item">
       <button class="btn" id="menu-rs-all">地块总览</button>
     </div>
@@ -315,6 +390,8 @@ by.joyan
       var tjbgBtn = document.getElementById("menu-rs-1");
       var tjTb = document.getElementById("tb-tj");
       var tjClose = document.getElementById("close-tj");
+      var copyrightBtn = document.getElementById("copyright-btn");
+      var copyrightRs = document.getElementById("copyright-menu");
 
       //菜单按钮事件
       menuBtn.onclick = function(e) {
@@ -346,6 +423,15 @@ by.joyan
           menuRs.classList.remove("show"); //判断，关闭菜单弹出栏
         }
       };
+
+      //copyright事件
+      copyrightBtn.onclick = function() {
+        if (copyrightRs.style.display == "block") {
+          copyrightRs.style.display = "none";
+        } else {
+          copyrightRs.style.display = "block";
+        }
+      }
 
       //点击以外区域关闭
       document.onclick = function(e) { //点菜单外区域隐藏
