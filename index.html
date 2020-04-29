@@ -220,8 +220,7 @@ by.joyan
       top: 30%;
     }
 
-    /* copyright */
-    /* 版本信息国产，影响移动端观看，copyright&logo移动至专用信息卡 */
+    /* copyright变更；版本信息国产，影响移动端观看，copyright&logo移动至专用信息卡 */
     .amap-copyright {
       display: none !important;
     }
@@ -238,7 +237,8 @@ by.joyan
       margin: 15px 0 0 0;
     }
 
-    .copyright-btn {
+    /* copyright按钮 */
+    .input-card-copyright-btn {
       display: flex;
       flex-direction: column;
       min-width: 0;
@@ -258,16 +258,17 @@ by.joyan
       flex: 1 1 auto;
     }
 
+    /* copyright弹出 */
     .input-card-copyright-menu {
       display: flex;
       flex-direction: column;
       min-width: 0;
       min-height: 0;
-      padding: 2rem 0rem;
+      padding: 3rem 2rem 1.25rem 2rem;
       margin-bottom: 1rem;
       border-radius: .25rem;
       position: absolute;
-      width: 30%;
+      width: 50%;
       left: 50%;
       top: 35%;
       transform: translate(-50%, 0%);
@@ -288,8 +289,8 @@ by.joyan
   <div id="container"></div>
 
   <!-- copyright按钮 -->
-  <div class="copyright-btn">
-    <button class="btn-menubtn" id=""><i>i</i></button>
+  <div class="input-card-copyright-btn">
+    <button class="btn-menubtn" id="copyright-btn"><i>i</i></button>
   </div>
 
   <!-- copyright弹出-->
@@ -385,13 +386,13 @@ by.joyan
   <!-- 按钮脚本 -->
   <script>
     window.onload = function() {
-      var menuBtn = document.getElementById("menu-btn");
-      var menuRs = document.getElementById("menu-rs");
-      var tjbgBtn = document.getElementById("menu-rs-1");
-      var tjTb = document.getElementById("tb-tj");
-      var tjClose = document.getElementById("close-tj");
-      var copyrightBtn = document.getElementById("copyright-btn");
-      var copyrightRs = document.getElementById("copyright-menu");
+      var menuBtn = document.getElementById("menu-btn"); //菜单按钮
+      var menuRs = document.getElementById("menu-rs"); //菜单弹出
+      var tjbgBtn = document.getElementById("menu-rs-1"); //统计表按钮
+      var tjTb = document.getElementById("tb-tj"); //统计表弹出
+      var tjClose = document.getElementById("close-tj"); //统计表开关
+      var cyBtn = document.getElementById("copyright-btn"); //cy按钮
+      var cyRs = document.getElementById("copyright-menu"); //cy弹出
 
       //菜单按钮事件
       menuBtn.onclick = function(e) {
@@ -415,6 +416,9 @@ by.joyan
           menuRs.classList.remove("show"); //关闭菜单
           menuBtn.innerHTML = '<span>菜单</span>';
         }
+        if (cyRs.style.display == "block") { //CY表在，则关闭
+          cyRs.style.display = "none";
+        }
       };
       tjClose.onclick = function(e) { //统计表格关闭按钮
         window.event ? window.event.cancelBubble = true : e.stopPropagation();
@@ -424,12 +428,15 @@ by.joyan
         }
       };
 
-      //copyright事件
-      copyrightBtn.onclick = function() {
-        if (copyrightRs.style.display == "block") {
-          copyrightRs.style.display = "none";
+      cyBtn.onclick = function(e) { //copyright按钮
+        window.event ? window.event.cancelBubble = true : e.stopPropagation();
+        if (cyRs.style.display == "block") {
+          cyRs.style.display = "none";
         } else {
-          copyrightRs.style.display = "block";
+          cyRs.style.display = "block";
+        }
+        if (tjTb.classList.contains("show")) { //统计表在，则关闭
+          tjTb.classList.remove("show");
         }
       }
 
@@ -448,8 +455,13 @@ by.joyan
           }
           elem = elem.parentNode;
         }
+
         if (tjTb.classList.contains("show")) {
-          tjTb.classList.remove("show");
+          tjTb.classList.remove("show"); //关闭统计表格
+        }
+
+        if (cyRs.style.display == "block") {
+          cyRs.style.display = "none"; //关闭copyright表格
         }
       };
     };
