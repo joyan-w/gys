@@ -228,7 +228,7 @@ by.joyan
 
   <!-- 版本号 -->
   <div class="amap-copyright">
-    <p>--20200425-016</p>
+    <p>--20200429-001</p>
   </div>
 
   <!-- 菜单按钮 -->
@@ -1053,6 +1053,21 @@ by.joyan
 
         map.setFitView()
     */
+
+    //3D模型-圆
+    var circle_3d = new AMap.Circle({
+      center: position_3d, // 圆心位置
+      radius: 11, //半径,m
+      strokeColor: "#F33", //线颜色
+      strokeOpacity: 0.6, //线透明度
+      strokeWeight: 3, //线粗细度
+      //strokeStyle: 'dashed', //轮廓线样式，实线:solid，虚线:dashed
+      //strokeDasharray:[5,2],//线形[线条，空]
+      fillColor: "#ee2200", //填充颜色
+      fillOpacity: 0.35, //填充透明度
+      zIndex: 99,
+    });
+    map.add(circle_3d);
 
     //3D模型
     var object3Dlayer = new AMap.Object3DLayer({
