@@ -29,6 +29,9 @@
     <p>pitch：<span id="map-p"></span></p>
     <p>rotation：<span id="map-r"></span></p>
     <p>click-lnglat：<span id="map-lnglat"></span></p>
+    <p>area (㎡)：<span id="map-area"></span></p>
+    <br>
+    <button class="btn" id="clear-pl">Clear-Polygon</button>
   </div>
   <!-- 加载地图JSAPI脚本 -->
   <script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值"></script>
@@ -79,9 +82,11 @@
       //用鼠标工具画多边形
       var drawPolygon = mouseTool.polygon();
 
+
       //添加事件
       AMap.event.addListener(mouseTool, 'draw', function(e) {
         var a = e.obj.getPath(); //获取路径
+        var ar = e.obj.getArea();
         var b = "";
         var i;
         for (i = 0; i < a.length; i++) {
@@ -89,6 +94,7 @@
         }; //加括号
         console.log(a); //获取路径/范围
         document.querySelector("#map-path").innerHTML = b;
+        document.querySelector("#map-area").innerText = ar.toString();
       });
     });
 
@@ -99,10 +105,12 @@
       var p = map.getPitch(); //获取俯仰角
       var r = map.getRotation(); //获取俯仰角
 
+
       document.querySelector("#map-zoo").innerText = zoom;
       document.querySelector("#map-cente").innerText = center.toString();
       document.querySelector("#map-p").innerText = p.toString();
       document.querySelector("#map-r").innerText = r.toString();
+
     };
     //绑定地图移动与缩放事件
     map.on('moveend', logMapinfo);
@@ -113,6 +121,11 @@
       var l = e.lnglat.getLng() + ',' + e.lnglat.getLat();
       document.querySelector("#map-lnglat").innerText = l;
     });
+
+    //清除多边形
+    document.getElementById("clear-pl").onclick = function() {
+      map.clearMap()
+    };
   </script>
 </body>
 
