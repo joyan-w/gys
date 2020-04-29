@@ -412,7 +412,7 @@ by.joyan
   </div>
 
   <!-- 手机提示 -->
-  <div class="mobile-dp">
+  <div class="mobile-dp" id="mobile-help">
     <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center' align='center'>
       <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作指南<b></h4>
       <tr>
@@ -446,7 +446,7 @@ by.joyan
   <script>
     try {
       if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        mobile.style.display = "block";
+        document.getElementById("mobile-help").style.display = "block";
       }
     }
   </script>
