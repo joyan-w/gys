@@ -147,6 +147,10 @@ by.joyan
       flex: 1 1 auto;
       padding: 0.75rem 1.25rem;
       transition: right .2s linear;
+      -ms-transform: right .2s linear;
+      -moz-transform: right .2s linear;
+      -webkit-transform: right .2s linear;
+      -o-transform: right .2s linear;
     }
 
     .input-card-rs.show {
@@ -206,7 +210,7 @@ by.joyan
       position: absolute;
       width: 50%;
       left: 50%;
-      top: -28%;
+      top: -32%;
       transform: translate(-50%, 0%);
       background-color: white;
       border-width: 0;
@@ -214,10 +218,14 @@ by.joyan
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       text-align: center;
       transition: top .2s linear;
+      -ms-transform: top .2s linear;
+      -moz-transform: top .2s linear;
+      -webkit-transform: top .2s linear;
+      -o-transform: top .2s linear;
     }
 
     .input-card-tj.show {
-      top: 30%;
+      top: 25%;
     }
 
     /* copyright变更；版本信息国产，影响移动端观看，copyright&logo移动至专用信息卡 */
@@ -270,7 +278,7 @@ by.joyan
       position: absolute;
       width: 50%;
       left: 50%;
-      top: 35%;
+      top: 25%;
       transform: translate(-50%, 0%);
       background-color: white;
       border-width: 0;
@@ -280,6 +288,29 @@ by.joyan
       line-height: 18px;
       color: grey;
       display: none;
+      font-size: 10px;
+    }
+
+    /* 手机弹出 */
+    .mobile-dp {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: 2rem 2rem 1.25rem 2rem;
+      margin-bottom: 1rem;
+      border-radius: .25rem;
+      position: absolute;
+      width: 80%;
+      left: 50%;
+      top: 10%;
+      transform: translate(-50%, 0%);
+      background-color: white;
+      border-width: 0;
+      margin: 0 auto;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+      text-align: center;
+      line-height: 18px;
       font-size: 10px;
     }
   </style>
@@ -377,6 +408,18 @@ by.joyan
   <div class="info-title">
     <p><b>项目测试</b></p>
   </div>
+
+  <div class="mobile-dp">
+    <p>这是手机</p>
+  </div>
+
+  <script>
+    try {
+      if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        mobile.style.display="block";
+      }
+    }
+  </script>
 
   <!-- 加载地图JSAPI脚本 -->
   <script src="https://webapi.amap.com/maps?v=1.4.15&key=5d734c342da6acb3de3ebdc017ca2e32"></script>
