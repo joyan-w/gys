@@ -28,19 +28,25 @@ by.joyan
 
     /* 标题栏 */
     .info-title {
-      padding: .75rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: 0.75rem 0rem 0.5rem 0rem;
       margin-bottom: 1rem;
       border-radius: .25rem;
-      position: fixed;
-      top: 0rem;
-      background-color: white;
+      position: absolute;
       width: 50%;
-      min-width: 22rem;
+      left: 50%;
+      top: 0%;
+      transform: translate(-50%, 0);
+      background-color: white;
       border-width: 0;
-      left: 0;
-      right: 0rem;
-      margin: auto;
+      margin: 0 auto;
       box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      text-align: center;
+      letter-spacing: 2.5px;
+      /*字符间距*/
     }
 
     /* 罗盘尺寸，位置 */
@@ -221,7 +227,7 @@ by.joyan
 
   <!-- 版本号 -->
   <div class="amap-copyright">
-    <p>--20200425-017</p>
+    <p>--20200425-020</p>
   </div>
 
   <!-- 菜单按钮 -->
@@ -291,7 +297,7 @@ by.joyan
 
   <!-- 标题栏 -->
   <div class="info-title">
-    <p style="text-align: center;letter-spacing:2px;/*字符间距*/" ;><b>项目测试</b></p>
+    <p><b>项目测试</b></p>
   </div>
 
 
