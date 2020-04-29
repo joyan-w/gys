@@ -17,6 +17,7 @@ by.joyan
 
     #container {
       width: 100%;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       height: 100%;
       margin: 0px;
       padding: 0px;
@@ -43,7 +44,7 @@ by.joyan
       background-color: white;
       border-width: 0;
       margin: 0 auto;
-      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       text-align: center;
       letter-spacing: 2.5px;
       /*字符间距*/
@@ -75,7 +76,7 @@ by.joyan
       width: auto;
       border-width: 0;
       border-radius: 10rem;
-      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
       /* 菜单按钮相对页面位置  */
       bottom: 1rem;
@@ -136,7 +137,7 @@ by.joyan
       width: 22rem;
       border-width: 0;
       border-radius: 0.4rem;
-      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
       /* 菜单按钮相对页面位置  */
       bottom: 4rem;
@@ -205,18 +206,18 @@ by.joyan
       position: absolute;
       width: 50%;
       left: 50%;
-      top: -20%;
-      transform: translate(-50%, -50%);
+      top: -25%;
+      transform: translate(-50%, 0%);
       background-color: white;
       border-width: 0;
       margin: 0 auto;
-      box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       text-align: center;
       transition: top .2s linear;
     }
 
     .input-card-tj.show {
-      top: 40%;
+      top: 30%;
     }
   </style>
 </head>
@@ -227,7 +228,7 @@ by.joyan
 
   <!-- 版本号 -->
   <div class="amap-copyright">
-    <p>--20200425-020</p>
+    <p>--20200425-016</p>
   </div>
 
   <!-- 菜单按钮 -->
@@ -300,6 +301,19 @@ by.joyan
     <p><b>项目测试</b></p>
   </div>
 
+  <!-- get-info-card
+  <div class="input-card">
+    <h4><b>GetInfo</b></h4>
+    <p>path：<br><span id="map-path" class="lnglat"></span></p>
+    <p>zoom：<span id="map-zoo"></span></p>
+    <p>center：<span id="map-cente"></span></p>
+    <p>pitch：<span id="map-p"></span></p>
+    <p>rotation：<span id="map-r"></span></p>
+    <p>click-lnglat：<span id="map-lnglat"></span></p>
+    <p>area (㎡)：<span id="map-area"></span></p>
+    <br>
+    <button class="btn" id="clear-pl">Clear-Polygon</button>
+  </div>  -->
 
   <!-- 加载地图JSAPI脚本 -->
   <script src="https://webapi.amap.com/maps?v=1.4.15&key=5d734c342da6acb3de3ebdc017ca2e32"></script>
@@ -376,7 +390,7 @@ by.joyan
       map.setPitch(73); //俯仰角
       setTimeout(function() {
         log.success("当前视角：C09地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-D23'), 'click', function() {
@@ -386,7 +400,7 @@ by.joyan
       map.setPitch(50); //俯仰角
       setTimeout(function() {
         log.success("当前视角：D23地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-D24'), 'click', function() {
@@ -396,17 +410,17 @@ by.joyan
       map.setPitch(50); //俯仰角
       setTimeout(function() {
         log.success("当前视角：D24地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-D25'), 'click', function() {
-      map.panTo([118.19538, 24.486694]); //移动至指定点
+      map.panTo([118.195384, 24.486851]); //移动至指定点
       map.setZoom(19.5); //显示级别
-      map.setRotation(37.4); //平面视角
-      map.setPitch(58); //俯仰角
+      map.setRotation(20); //平面视角
+      map.setPitch(60); //俯仰角
       setTimeout(function() {
         log.success("当前视角：D25地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-D26'), 'click', function() {
@@ -416,7 +430,7 @@ by.joyan
       map.setPitch(57); //俯仰角
       setTimeout(function() {
         log.success("当前视角：D26地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-D27'), 'click', function() {
@@ -426,7 +440,7 @@ by.joyan
       map.setPitch(46); //俯仰角
       setTimeout(function() {
         log.success("当前视角：D27地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-D28'), 'click', function() {
@@ -436,7 +450,7 @@ by.joyan
       map.setPitch(62); //俯仰角
       setTimeout(function() {
         log.success("当前视角：D28地块"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //移动到，绑定按钮事件
 
     AMap.event.addDomListener(document.getElementById('menu-rs-all'), 'click', function() {
@@ -446,7 +460,7 @@ by.joyan
       map.setPitch(0); //俯仰角
       setTimeout(function() {
         log.success("地块总览"); //弹窗提示
-      }, 0.3 * 1000); //延迟0.3秒加载
+      }, 0.1 * 1000); //延迟0.3秒加载
     }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
   </script>
 
@@ -458,7 +472,7 @@ by.joyan
       merge: false,
       sort: false,
       zooms: [17, 20],
-      heightFactor: 1.5 //1.5倍于默认高度，3D下有效
+      //heightFactor: 1.5 //1.5倍于默认高度，3D下有效
     });
 
     var buildoptions = {
@@ -590,10 +604,10 @@ by.joyan
 
     //初始化地图
     var map = new AMap.Map('container', {
-      zoom: 17, //初始化地图层级
-      center: [118.195538, 24.487961], //初始化地图中心点
-      pitch: 0, //仰角
-      rotation: 0, //旋转视角
+      zoom: 17.9, //初始化地图层级
+      center: [118.19545, 24.487012], //初始化地图中心点
+      pitch: 61, //仰角
+      rotation: -18.2, //旋转视角
       expandZoomRange: true, //缩放控制
       zooms: [3, 20],
       viewMode: '3D', //开启3D视图,默认为关闭
@@ -605,9 +619,15 @@ by.joyan
       pitchEnable: true,
       //zoomEnable: true, //地图是否可缩放，默认值为true
       features: ['bg', 'road'],
-      mapStyle: 'amap://styles/light',
+      //mapStyle: 'amap://styles/light',
       layers: [
         new AMap.TileLayer(),
+        new AMap.TileLayer.RoadNet({
+          opacity: 0.4 //透明度
+        }),
+        new AMap.TileLayer.Satellite({
+          opacity: 0.4 //透明度
+        }),
         buildingLayer,
       ]
     });
@@ -993,44 +1013,46 @@ by.joyan
       infoWindow.open(map, position_3d); //在指定位置打开信息窗体
     }
 
-    //路径
-    var path1 = [
-      [118.197383, 24.486167],
-      [118.196517, 24.486338],
-      [118.194312, 24.486584],
-      [118.192895, 24.486857]
-    ];
-    var path2 = [
-      [118.19503, 24.484038],
-      [118.195415, 24.484978],
-      [118.195587, 24.485613],
-      [118.195714, 24.486325],
-      [118.195742, 24.487],
-      [118.195731, 24.487722],
-      [118.195656, 24.488266],
-      [118.195512, 24.489051],
-      [118.19538, 24.489846],
-      [118.195167, 24.490778]
-    ];
-    var polyline1 = new AMap.Polyline({
-      path: path1, // 设置线覆盖物路径
-      //showDir: true,
-      //dirColor: 'pink',
-      strokeColor: '#fcf4c2', // 线颜色
-      strokeWeight: 10 // 线宽
-    });
+    /*
+        //路径
+        var path1 = [
+          [118.197383, 24.486167],
+          [118.196517, 24.486338],
+          [118.194312, 24.486584],
+          [118.192895, 24.486857]
+        ];
+        var path2 = [
+          [118.19503, 24.484038],
+          [118.195415, 24.484978],
+          [118.195587, 24.485613],
+          [118.195714, 24.486325],
+          [118.195742, 24.487],
+          [118.195731, 24.487722],
+          [118.195656, 24.488266],
+          [118.195512, 24.489051],
+          [118.19538, 24.489846],
+          [118.195167, 24.490778]
+        ];
+        var polyline1 = new AMap.Polyline({
+          path: path1, // 设置线覆盖物路径
+          //showDir: true,
+          //dirColor: 'pink',
+          strokeColor: '#fcf4c2', // 线颜色
+          strokeWeight: 10 // 线宽
+        });
 
-    var polyline2 = new AMap.Polyline({
-      path: path2, // 设置线覆盖物路径
-      //showDir: true,
-      //dirColor: 'pink',
-      strokeColor: '#fcf4c2', // 线颜色
-      strokeWeight: 10 // 线宽
-    });
+        var polyline2 = new AMap.Polyline({
+          path: path2, // 设置线覆盖物路径
+          //showDir: true,
+          //dirColor: 'pink',
+          strokeColor: '#fcf4c2', // 线颜色
+          strokeWeight: 10 // 线宽
+        });
 
-    map.add([polyline1, polyline2])
+        map.add([polyline1, polyline2])
 
-    map.setFitView()
+        map.setFitView()
+    */
 
     //3D模型
     var object3Dlayer = new AMap.Object3DLayer({
@@ -1090,6 +1112,62 @@ by.joyan
 
     addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -10, 70) //圆柱
   </script>
+
+  <!-- get-info
+  <script>
+    //通过插件方式引入 AMap.MouseTool 工具
+    map.plugin(["AMap.MouseTool"], function() {
+      //在地图中添加MouseTool插件
+      var mouseTool = new AMap.MouseTool(map);
+
+      //用鼠标工具画多边形
+      var drawPolygon = mouseTool.polygon();
+
+
+      //添加事件
+      AMap.event.addListener(mouseTool, 'draw', function(e) {
+        var a = e.obj.getPath(); //获取路径
+        var ar = e.obj.getArea();
+        var b = "";
+        var i;
+        for (i = 0; i < a.length; i++) {
+          b += "[" + a[i] + "],<br>"
+        }; //加括号
+        console.log(a); //获取路径/范围
+        document.querySelector("#map-path").innerHTML = b;
+        document.querySelector("#map-area").innerText = ar.toString();
+      });
+    });
+
+    //显示信息
+    function logMapinfo() {
+      var zoom = map.getZoom(); //获取当前地图级别
+      var center = map.getCenter(); //获取当前地图中心位置
+      var p = map.getPitch(); //获取俯仰角
+      var r = map.getRotation(); //获取俯仰角
+
+
+      document.querySelector("#map-zoo").innerText = zoom;
+      document.querySelector("#map-cente").innerText = center.toString();
+      document.querySelector("#map-p").innerText = p.toString();
+      document.querySelector("#map-r").innerText = r.toString();
+
+    };
+    //绑定地图移动与缩放事件
+    map.on('moveend', logMapinfo);
+    map.on('zoomend', logMapinfo);
+
+    //单击坐标
+    map.on('click', function(e) {
+      var l = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+      document.querySelector("#map-lnglat").innerText = l;
+    });
+
+    //清除多边形
+    document.getElementById("clear-pl").onclick = function() {
+      map.clearMap();
+    };
+  </script> -->
 </body>
 
 </html>
