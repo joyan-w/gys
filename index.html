@@ -1041,9 +1041,9 @@ by.joyan
     })
 
     var Ck = new AMap.Text({
-      text: '&ensp;沉井式地下车库&ensp;',
+      text: '&ensp;沉井地下车库&ensp;',
       position: position_3d,
-      height: 5,
+      height: 50,//5
       verticalAlign: 'bottom',
       zooms: [18, 20],
       map: map,
@@ -1354,7 +1354,34 @@ by.joyan
       object3Dlayer.add(cylinder);
     };
 
-    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -10, 70) //圆柱
+    addRegularPrism(center_3d.add(new AMap.Pixel(0, 0)), 32, -150, -10, 70); //圆柱
+
+    //出入口
+    var object3Dlayer_gltf = new AMap.Object3DLayer({
+      opacity:0.55,
+      zooms:[19,20],
+    });
+    map.add(object3Dlayer_gltf);
+
+    map.plugin(["AMap.GltfLoader"], function() {
+      var urlEnter = './md001_lbs_bbd268b8edf7e86449dc755c9c8153b1.gltf';
+
+      var paramEnter = {
+        position: new AMap.LngLat(118.195977, 24.486574), // 必须
+        scale: 0.006, // 非必须，默认1
+        height: 0, // 非必须，默认0
+        scene: 0, // 非必须，默认0
+      };
+
+      var gltfObj = new AMap.GltfLoader();
+
+      gltfObj.load(urlEnter, function(gltfEnter) {
+        gltfEnter.setOption(paramEnter);
+        gltfEnter.rotateX(0);
+        gltfEnter.rotateZ(0);
+        object3Dlayer_gltf.add(gltfEnter);
+      });
+    });
   </script>
 </body>
 
