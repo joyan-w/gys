@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<!--
+本页面基于高德开放平台制作，用于开发学习。
+by.joyan
+ -->
 <html lang="en" dir="ltr">
 
 <head>
@@ -15,7 +18,6 @@
 
     #container {
       width: 100%;
-      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       height: 100%;
       margin: 0px;
       padding: 0px;
@@ -25,7 +27,7 @@
       width: 100%
     }
 
-    
+    /* 标题栏 */
     .info-title {
       display: flex;
       flex-direction: column;
@@ -45,10 +47,10 @@
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       text-align: center;
       letter-spacing: 2.5px;
-      
+      /*字符间距*/
     }
 
-    
+    /* 罗盘尺寸，位置 */
     .amap-controlbar {
       transform: scale(0.35);
       -ms-transform: scale(0.35);
@@ -62,7 +64,7 @@
       -moz-transform-origin: 0% 0
     }
 
-    
+    /* 菜单按钮容器 */
     .input-card-menubtn {
       display: flex;
       flex-direction: column;
@@ -76,7 +78,7 @@
       border-radius: 10rem;
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
-      
+      /* 菜单按钮相对页面位置  */
       bottom: 1rem;
       right: 1rem;
       -ms-flex: 1 1 auto;
@@ -84,7 +86,7 @@
       padding: 0rem;
     }
 
-    
+    /* 菜单按钮 */
     .btn-menubtn {
       display: inline-block;
       font-weight: 400;
@@ -123,7 +125,7 @@
       box-shadow: none;
     }
 
-    
+    /* 菜单容器 */
     .input-card-rs {
       display: flex;
       flex-direction: column;
@@ -137,10 +139,10 @@
       border-radius: 0.4rem;
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
-      
+      /* 菜单按钮相对页面位置  */
       bottom: 4rem;
       right: -25%;
-      
+      /* 隐藏位置 */
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       padding: 0.75rem 1.25rem;
@@ -155,7 +157,7 @@
       right: 1rem;
     }
 
-    
+    /*信息窗体样式*/
     .custom-input-card {
       width: 18rem;
     }
@@ -185,7 +187,7 @@
       padding: 10px;
     }
 
-    
+    /* 表格 */
     table {
       width: 100%;
       font-size: 12px;
@@ -196,7 +198,7 @@
       text-align: center;
     }
 
-    
+    /* 统计表格样式*/
     .input-card-tj {
       display: flex;
       flex-direction: column;
@@ -226,7 +228,7 @@
       top: 25%;
     }
 
-    
+    /* copyright变更；版本信息国产，影响移动端观看，copyright&logo移动至专用信息卡 */
     .amap-copyright {
       display: none !important;
     }
@@ -239,11 +241,10 @@
       width: 73px !important;
       height: 20px !important;
       border: 0;
-      vertical-align: baseline !important;
-      margin: 10px 0 0 0;
+      margin-bottom: 4px;
     }
 
-    
+    /* copyright按钮 */
     .input-card-copyright-btn {
       display: flex;
       flex-direction: column;
@@ -257,20 +258,20 @@
       border-radius: 10rem;
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       position: fixed;
-      
+      /* 菜单按钮相对页面位置  */
       bottom: 1rem;
       left: 1rem;
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
     }
 
-    
+    /* copyright弹出 */
     .input-card-copyright-menu {
       display: flex;
       flex-direction: column;
       min-width: 0;
       min-height: 0;
-      padding: 2rem 2rem 1.25rem 2rem;
+      padding: 2rem 2rem 1.5rem 2rem;
       margin-bottom: 1rem;
       border-radius: .25rem;
       position: absolute;
@@ -283,14 +284,14 @@
       margin: 0 auto;
       box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
       text-align: center;
-      line-height: 18px;
+      line-height: 12px;
       color: grey;
       display: none;
       font-size: 10px;
     }
 
-    
-    .mobile-dp {
+    /* help弹出 */
+    .crtl-help {
       display: flex;
       flex-direction: column;
       min-width: 0;
@@ -310,28 +311,38 @@
       text-align: center;
       line-height: 18px;
       font-size: 12px;
+    }
+
+    .help-cover {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
       display: none;
     }
   </style>
 </head>
 
 <body>
-  
+  <!-- 地图容器 -->
   <div id="container"></div>
 
-  
+  <!-- copyright按钮 -->
   <div class="input-card-copyright-btn">
     <button class="btn-menubtn" id="copyright-btn"><i>i</i></button>
   </div>
 
-  
+  <!-- copyright弹出-->
   <div class="input-card-copyright-menu" id="copyright-menu">
-    <p style="letter-spacing: 1px;"><span style="color:black;"><b>Joyan二开试验:20200430-5</b></span><br>地图基础数据及卫星图片<br>源于高德开放平台<br>Powered by lbs.amap<br>& AutoNavi-JavaScript-API</p>
-    <a href="#" class="amap-logo-2">
-      <img src="https://webapi.amap.com/theme/v1.3/logo@1x.png">
-    </a>
+    <p style="letter-spacing: 1px;"><span style="color:black;"><b>Joyan二开试验:20200430-5</b></span><br><br>地图基础数据及卫星图片源于高德开放平台<br>Map Powered by lbs.amap & AutoNavi-JavaScript-API<br>Icon Powered by Iconfont & Alimama MUX</p>
+    <div class="amap-logo-2" style="margin-top:10px;">
+      <img style="vertical-align:middle;" src="https://webapi.amap.com/theme/v1.3/logo@1x.png" /><span style="font-size:15px;padding-left:8px;"><b>Iconfont</b><sup style="color:red;">+</sup></span></b>
+    </div>
     <div>
-      © 2020 AutoNavi<span class="amap-mcode">- GS(2019)5392号</span>
+      © 2020 AutoNavi - GS(2019)5392号<br>©ALIMAMA MUX & iconfont
     </div><br>
     <div>
       <button class="btn" id="copyright-close">关闭</button>&ensp;&ensp;
@@ -339,12 +350,12 @@
     </div>
   </div>
 
-  
+  <!-- 菜单按钮 -->
   <div class="input-card-menubtn">
     <button class="btn-menubtn" id="menu-btn"><span>菜单</span></button>
   </div>
 
-  
+  <!-- 菜单 -->
   <div class="input-card-rs" id="menu-rs">
     <div class="input-item">
       <button class="btn" id="menu-rs-all">地块总览</button>
@@ -376,7 +387,7 @@
     </div>
   </div>
 
-  
+  <!-- 统计表格 -->
   <div class='input-card-tj' id="tb-tj">
     <h4 style="font-size:14px;text-align:center;"><b>项目规划总览</b></h4>
     <table border='1' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
@@ -403,65 +414,112 @@
     </p>
   </div>
 
-  
+  <!-- 标题栏 -->
   <div class="info-title">
     <p><b>项目测试</b></p>
   </div>
 
-  
-  <div class="mobile-dp" id="mobile-help">
-    <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
-      <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作说明</b></h4>
-      <tr>
-        <td><span class="iconfont icon-pinch"></span></td>
-        <td style="text-align: left;">双指开合缩放视野</td>
-      </tr>
-      <tr>
-        <td><span class="iconfont icon-rotate01"></span></td>
-        <td style="text-align: left;">双指旋转调整三维视角</td>
-      </tr>
-      <tr>
-        <td style=""><span class="iconfont icon-dragdown"></span></td>
-        <td style="text-align: left;">双指上下滑动调整俯仰角</td>
-      </tr>
-      <tr>
-        <td><span class="iconfont icon-righthand1pinch"></td>
-        <td style="text-align: left;">点击右下角按钮展开地块列表</td>
-      </tr>
-      <tr>
-        <td><span class="iconfont icon-tap"></span></td>
-        <td style="text-align: left;">点击地图标签查看详细规划信息</td>
-      </tr>
-      <tr>
-        <td><span class="iconfont icon-doubletap"></span></td>
-        <td style="text-align: left;">双击左上角指南针恢复水平视角</td>
-      </tr>
-    </table>
-        <br>
-    <p style="color:grey;">如果无法显示三维视角，有可能是您的浏览器不支持WebGl，请更换浏览器，推荐微信扫码</p>
-    <br>
-    <p style="font-size:14px;">
-      <button class="btn" id="close-help">&ensp;X&ensp;</button>
-    </p>
+  <!-- 手机提示 -->
+  <div class="help-cover" id="mobile-help">
+    <div class="crtl-help">
+      <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
+        <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作说明</b></h4>
+        <tr>
+          <td><span class="iconfont icon-pinch"></span></td>
+          <td style="text-align: left;">双指开合缩放视野</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-rotate01"></span></td>
+          <td style="text-align: left;">双指旋转调整三维视角</td>
+        </tr>
+        <tr>
+          <td style=""><span class="iconfont icon-dragdown"></span></td>
+          <td style="text-align: left;">双指上下滑动调整俯仰角</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-righthand1pinch"></td>
+          <td style="text-align: left;">点击右下角按钮展开地块列表</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-tap"></span></td>
+          <td style="text-align: left;">点击地图标签查看详细规划信息</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-doubletap"></span></td>
+          <td style="text-align: left;">双击左上角指南针恢复水平视角</td>
+        </tr>
+      </table>
+      <br>
+      <p style="color:grey; font-size:10px;">如果无法显示3D视角，有可能是您的浏览器不支持WebGl，请尝试更换浏览器，推荐微信扫码</p>
+      <br>
+      <p style="font-size:14px;">
+        <button class="btn" id="close-help-mb">&ensp;X&ensp;</button>
+      </p>
+    </div>
   </div>
 
-  
+  <!-- PC提示 -->
+  <div class="help-cover" id="pc-help">
+    <div class="crtl-help">
+      <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
+        <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作说明</b></h4>
+        <tr>
+          <td><span class="iconfont icon-zuojian1"></span></td>
+          <td style="text-align: left;">鼠标左键移动视野</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-youjian1"></span></td>
+          <td style="text-align: left;">鼠标右键调整视角</td>
+        </tr>
+        <tr>
+          <td style=""><b><span class="iconfont icon-gunlun" style="font-size: 26px;"></b></span></td>
+          <td style="text-align: left;">鼠标滚轮缩放视野</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-shuangji" style="font-size: 34px;"></td>
+          <td style="text-align: left;">左键双击恢复视角</td>
+        </tr>
+        <tr>
+          <td><span class="iconfont icon-shubiao" style="font-size: 26px;"></span></td>
+          <td style="text-align: left;">点击标签查看详细信息</td>
+        </tr>
+      </table>
+      <br>
+      <p style="color:grey;">如果无法显示3D视角，有可能是您的浏览器不支持WebGl，请尝试更换浏览器，推荐Chrome浏览器</p>
+      <br>
+      <p style="font-size:14px;">
+        <button class="btn" id="close-help-pc">&ensp;X&ensp;</button>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- help提示脚本 -->
   <script>
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       document.getElementById("mobile-help").style.display = "block";
-    };
-    document.getElementById('close-help').onclick = function() {
+    } else {
+      document.getElementById("pc-help").style.display = "block";
+    }; //判断pc or mb
+
+    document.getElementById('close-help-mb').onclick = function() {
       document.getElementById("mobile-help").style.display = "none";
-    }
+    }; //close mb
+
+    document.getElementById('close-help-pc').onclick = function() {
+      document.getElementById("pc-help").style.display = "none";
+    }; //close pc
   </script>
 
-  
+
+  <!-- 加载地图JSAPI脚本 -->
   <script src="https://webapi.amap.com/maps?v=1.4.15&key=5d734c342da6acb3de3ebdc017ca2e32"></script>
   <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
-  
+  <!-- UI组件库 1.0 -->
   <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 
-  
+
+  <!-- 按钮脚本 2015-06 -->
   <script>
     window.onload = function() {
       var menuBtn = document.getElementById("menu-btn"); //菜单按钮
@@ -471,7 +529,7 @@
       var tjClose = document.getElementById("close-tj"); //统计表开关
       var cyBtn = document.getElementById("copyright-btn"); //cy按钮
       var cyRs = document.getElementById("copyright-menu"); //cy弹出
-      var cyhpopen = document.getElementById("copyright-help-open"); //打开帮助
+      var helpOpen = document.getElementById("copyright-help-open"); //打开帮助
 
       //菜单按钮事件
       menuBtn.onclick = function(e) {
@@ -519,8 +577,12 @@
         }
       }
 
-      cyhpopen.onclick = function(e) {
-        document.getElementById("mobile-help").style.display = "block";
+      helpOpen.onclick = function(e) {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          document.getElementById("mobile-help").style.display = "block";
+        } else {
+          document.getElementById("pc-help").style.display = "block";
+        }; //判断pc or mb
       }
 
       //点击以外区域关闭
@@ -631,7 +693,7 @@
     }); //缩放到，绑定按钮事件，获取视野：https://lbs.amap.com/api/javascript-api/example/map/map-bounds
   </script>
 
-  
+  <!-- 地图脚本 -->
   <script>
     //定义楼快样式
     var buildingLayer = new AMap.Buildings({
