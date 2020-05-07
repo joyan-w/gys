@@ -324,16 +324,16 @@ by.joyan
       display: none;
     }
   </style>
- 
- <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?3e3c63344eefeef9db4b0816133094f5";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3e3c63344eefeef9db4b0816133094f5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 </head>
 
@@ -475,16 +475,16 @@ var _hmt = _hmt || [];
       <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
         <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作说明</b></h4>
         <tr>
+          <td style=""><b><span class="iconfont icon-gunlun" style="font-size: 26px;"></b></span></td>
+          <td style="text-align: left;">鼠标滚轮缩放视野</td>
+        </tr>
+        <tr>
           <td><span class="iconfont icon-zuojian1"></span></td>
-          <td style="text-align: left;">鼠标左键移动视野</td>
+          <td style="text-align: left;">鼠标左键拖拽移动视野</td>
         </tr>
         <tr>
           <td><span class="iconfont icon-youjian1"></span></td>
-          <td style="text-align: left;">鼠标右键调整视角</td>
-        </tr>
-        <tr>
-          <td style=""><b><span class="iconfont icon-gunlun" style="font-size: 26px;"></b></span></td>
-          <td style="text-align: left;">鼠标滚轮缩放视野</td>
+          <td style="text-align: left;">鼠标右键拖拽调整视角</td>
         </tr>
         <tr>
           <td><span class="iconfont icon-shuangji" style="font-size: 34px;"></td>
@@ -946,7 +946,7 @@ var _hmt = _hmt || [];
     var path24 = [118.194032, 24.486193];
     var path25 = [118.19538, 24.486666];
     var path26 = [118.195323, 24.486199];
-    var path27 = [118.196281,24.486679];
+    var path27 = [118.196281, 24.486679];
     var path28 = [118.196071, 24.48607];
 
     //3D模型初始位置
@@ -1054,7 +1054,7 @@ var _hmt = _hmt || [];
     var Ck = new AMap.Text({
       text: '&ensp;沉井地下车库&ensp;',
       position: position_3d,
-      height: 50,//5
+      height: 50, //5
       verticalAlign: 'bottom',
       zooms: [18, 20],
       map: map,
@@ -1369,8 +1369,8 @@ var _hmt = _hmt || [];
 
     //出入口
     var object3Dlayer_gltf = new AMap.Object3DLayer({
-      opacity:0.55,
-      zooms:[18,20],
+      opacity: 0.55,
+      zooms: [18, 20],
     });
     map.add(object3Dlayer_gltf);
 
