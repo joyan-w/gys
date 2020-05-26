@@ -1,48 +1,132 @@
 <!doctype html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>输入提示后查询</title>
-    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
-     <script src="https://webapi.amap.com/maps?v=1.4.15&key=5d734c342da6acb3de3ebdc017ca2e32"></script>
-    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
-</head>
-<body>
-<div id="container"></div>
-<div id="myPageTop">
-    <table>
-        <tr>
-            <td>
-                <label>请输入关键字：</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input id="tipinput"/>
-            </td>
-        </tr>
-    </table>
-</div>
-<script type="text/javascript">
-    //地图加载
-    var map = new AMap.Map("container", {
-        resizeEnable: true
-    });
-    //输入提示
-    var autoOptions = {
-        input: "tipinput"
-    };
-    var auto = new AMap.Autocomplete(autoOptions);
-    var placeSearch = new AMap.PlaceSearch({
-        map: map
-    });  //构造地点查询类
-    AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
-    function select(e) {
-        placeSearch.setCity(e.poi.adcode);
-        placeSearch.search(e.poi.name);  //关键字查询查询
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+  <!-- UI组件库 1.0 -->
+  <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+  <title>地图显示</title>
+  <style>
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
     }
-</script>
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <div class="input-card">
+    <h4><b>GetInfo</b></h4>
+    <p>path：<br><span id="map-path" class="lnglat"></span></p>
+    <p>zoom：<span id="map-zoo"></span></p>
+    <p>center：<span id="map-cente"></span></p>
+    <p>pitch：<span id="map-p"></span></p>
+    <p>rotation：<span id="map-r"></span></p>
+    <p>click-lnglat：<span id="map-lnglat"></span></p>
+    <p>area (㎡)：<span id="map-area"></span></p>
+    <br>
+    <button class="btn" id="clear-pl">Clear-Polygon</button>
+  </div>
+  <!-- 加载地图JSAPI脚本 -->
+  <script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值"></script>
+  <script>
+    var map = new AMap.Map('container', {
+      resizeEnable: true, //是否监控地图容器尺寸变化
+      rotateEnable: true,
+      pitchEnable: true,
+      zoom: 17, //初始化地图层级
+      expandZoomRange: true, //缩放控制
+      zooms: [3, 20],
+      expandZoomRange: true, //缩放控制
+      showIndoorMap: false,
+      viewMode: '3D', //开启3D视图,默认为关闭
+      center: [118.196324, 24.486621], //初始化地图中心点
+      layers: [
+        new AMap.TileLayer(),
+        new AMap.TileLayer.RoadNet(),
+        new AMap.TileLayer.Satellite({
+          opacity: 0.4 //透明度
+        })
+      ],
+    });
+
+    //其他插件载入
+    AMap.plugin([
+        'AMap.Scale', //比例尺
+        'AMap.ControlBar', //3D 罗盘控制
+      ],
+      function() {
+        //其他控件添加
+        map.addControl(new AMap.Scale()); //比例尺
+        map.addControl(new AMap.ControlBar({ // 添加 3D 罗盘控制
+          showZoomBar: false, //缩放按钮
+          showControlButton: true, //罗盘
+          position: { //位置
+            right: '10px',
+            top: '10px',
+          }
+        }));
+      });
+
+    //通过插件方式引入 AMap.MouseTool 工具
+    map.plugin(["AMap.MouseTool"], function() {
+      //在地图中添加MouseTool插件
+      var mouseTool = new AMap.MouseTool(map);
+
+      //用鼠标工具画多边形
+      var drawPolygon = mouseTool.polygon();
+
+
+      //添加事件
+      AMap.event.addListener(mouseTool, 'draw', function(e) {
+        var a = e.obj.getPath(); //获取路径
+        var ar = e.obj.getArea();
+        var b = "";
+        var i;
+        for (i = 0; i < a.length; i++) {
+          b += "[" + a[i] + "],<br>"
+        }; //加括号
+        console.log(a); //获取路径/范围
+        document.querySelector("#map-path").innerHTML = b;
+        document.querySelector("#map-area").innerText = ar.toString();
+      });
+    });
+
+    //显示信息
+    function logMapinfo() {
+      var zoom = map.getZoom(); //获取当前地图级别
+      var center = map.getCenter(); //获取当前地图中心位置
+      var p = map.getPitch(); //获取俯仰角
+      var r = map.getRotation(); //获取俯仰角
+
+
+      document.querySelector("#map-zoo").innerText = zoom;
+      document.querySelector("#map-cente").innerText = center.toString();
+      document.querySelector("#map-p").innerText = p.toString();
+      document.querySelector("#map-r").innerText = r.toString();
+
+    };
+    //绑定地图移动与缩放事件
+    map.on('moveend', logMapinfo);
+    map.on('zoomend', logMapinfo);
+
+    //单击坐标
+    map.on('click', function(e) {
+      var l = e.lnglat.getLng() + ',' + e.lnglat.getLat();
+      document.querySelector("#map-lnglat").innerText = l;
+    });
+
+    //清除多边形
+    document.getElementById("clear-pl").onclick = function() {
+      map.clearMap()
+    };
+  </script>
 </body>
+
 </html>
