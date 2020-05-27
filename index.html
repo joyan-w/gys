@@ -475,7 +475,7 @@ by.joyan
       <table style="width:auto;" border='0' bordercolor='gray' cellpadding='6px' cellspacing='0' align='center'>
         <h4 style="letter-spacing: 2.5px; font-size:16px"><b>操作说明</b></h4>
         <tr>
-          <td style=""><b><span class="iconfont icon-gunlun" style="font-size: 26px;"></b></span></td>
+          <td style=""><b><span class="iconfont icon-gunlun" style="font-size: 26px;"></span></b></td>
           <td style="text-align: left;">鼠标滚轮缩放视野</td>
         </tr>
         <tr>
@@ -532,95 +532,96 @@ by.joyan
 
   <!-- 按钮脚本 2015-06 -->
   <script>
-    window.onload = function() {
-      var menuBtn = document.getElementById("menu-btn"); //菜单按钮
-      var menuRs = document.getElementById("menu-rs"); //菜单弹出
-      var tjbgBtn = document.getElementById("menu-rs-1"); //统计表按钮
-      var tjTb = document.getElementById("tb-tj"); //统计表弹出
-      var tjClose = document.getElementById("close-tj"); //统计表开关
-      var cyBtn = document.getElementById("copyright-btn"); //cy按钮
-      var cyRs = document.getElementById("copyright-menu"); //cy弹出
-      var helpOpen = document.getElementById("copyright-help-open"); //打开帮助
+    //顺序加载
+    /*window.onload = function() {*/
+    var menuBtn = document.getElementById("menu-btn"); //菜单按钮
+    var menuRs = document.getElementById("menu-rs"); //菜单弹出
+    var tjbgBtn = document.getElementById("menu-rs-1"); //统计表按钮
+    var tjTb = document.getElementById("tb-tj"); //统计表弹出
+    var tjClose = document.getElementById("close-tj"); //统计表开关
+    var cyBtn = document.getElementById("copyright-btn"); //cy按钮
+    var cyRs = document.getElementById("copyright-menu"); //cy弹出
+    var helpOpen = document.getElementById("copyright-help-open"); //打开帮助
 
-      //菜单按钮事件
-      menuBtn.onclick = function(e) {
-        window.event ? window.event.cancelBubble = true : e.stopPropagation();
-        if (menuRs.classList.contains("show")) {
-          menuRs.classList.remove("show");
-          menuBtn.innerHTML = '<span>菜单</span>';
-        } else {
-          menuRs.classList.add("show");
-          menuBtn.innerHTML = '<span>关闭</span>';
-        }
-      };
-
-      //统计表格事件
-      tjbgBtn.onclick = function(e) { //统计表格按钮
-        window.event ? window.event.cancelBubble = true : e.stopPropagation();
-        if (tjTb.classList.contains("show")) {
-          tjTb.classList.remove("show");
-        } else {
-          tjTb.classList.add("show"); //显示表格
-          menuRs.classList.remove("show"); //关闭菜单
-          menuBtn.innerHTML = '<span>菜单</span>';
-        }
-        if (cyRs.style.display == "block") { //CY表在，则关闭
-          cyRs.style.display = "none";
-        }
-      };
-      tjClose.onclick = function(e) { //统计表格关闭按钮
-        window.event ? window.event.cancelBubble = true : e.stopPropagation();
-        tjTb.classList.remove("show"); //关闭统计表格
-        if (menuRs.classList.contains("show")) {
-          menuRs.classList.remove("show"); //判断，关闭菜单弹出栏
-        }
-      };
-
-      cyBtn.onclick = function(e) { //copyright按钮
-        window.event ? window.event.cancelBubble = true : e.stopPropagation();
-        if (cyRs.style.display == "block") {
-          cyRs.style.display = "none";
-        } else {
-          cyRs.style.display = "block";
-        }
-        if (tjTb.classList.contains("show")) { //统计表在，则关闭
-          tjTb.classList.remove("show");
-        }
+    //菜单按钮事件
+    menuBtn.onclick = function(e) {
+      window.event ? window.event.cancelBubble = true : e.stopPropagation();
+      if (menuRs.classList.contains("show")) {
+        menuRs.classList.remove("show");
+        menuBtn.innerHTML = '<span>菜单</span>';
+      } else {
+        menuRs.classList.add("show");
+        menuBtn.innerHTML = '<span>关闭</span>';
       }
-
-      helpOpen.onclick = function(e) {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-          document.getElementById("mobile-help").style.display = "block";
-        } else {
-          document.getElementById("pc-help").style.display = "block";
-        }; //判断pc or mb
-      }
-
-      //点击以外区域关闭
-      document.onclick = function(e) { //点菜单外区域隐藏
-        var e = e || window.event; //浏览器兼容性
-        var elem = e.target || e.srcElement;
-        if (menuRs.classList.contains("show")) {
-          menuRs.classList.remove("show"); //关闭菜单弹出栏
-          menuBtn.innerHTML = '<span>菜单</span>';
-        }
-
-        while (elem) { //循环判断至跟节点，防止点击的是div#tb-tj子元素
-          if (elem.id && elem.id == 'tb-tj') {
-            return;
-          }
-          elem = elem.parentNode;
-        }
-
-        if (tjTb.classList.contains("show")) {
-          tjTb.classList.remove("show"); //关闭统计表格
-        }
-
-        if (cyRs.style.display == "block") {
-          cyRs.style.display = "none"; //关闭copyright表格
-        }
-      };
     };
+
+    //统计表格事件
+    tjbgBtn.onclick = function(e) { //统计表格按钮
+      window.event ? window.event.cancelBubble = true : e.stopPropagation();
+      if (tjTb.classList.contains("show")) {
+        tjTb.classList.remove("show");
+      } else {
+        tjTb.classList.add("show"); //显示表格
+        menuRs.classList.remove("show"); //关闭菜单
+        menuBtn.innerHTML = '<span>菜单</span>';
+      }
+      if (cyRs.style.display == "block") { //CY表在，则关闭
+        cyRs.style.display = "none";
+      }
+    };
+    tjClose.onclick = function(e) { //统计表格关闭按钮
+      window.event ? window.event.cancelBubble = true : e.stopPropagation();
+      tjTb.classList.remove("show"); //关闭统计表格
+      if (menuRs.classList.contains("show")) {
+        menuRs.classList.remove("show"); //判断，关闭菜单弹出栏
+      }
+    };
+
+    cyBtn.onclick = function(e) { //copyright按钮
+      window.event ? window.event.cancelBubble = true : e.stopPropagation();
+      if (cyRs.style.display == "block") {
+        cyRs.style.display = "none";
+      } else {
+        cyRs.style.display = "block";
+      }
+      if (tjTb.classList.contains("show")) { //统计表在，则关闭
+        tjTb.classList.remove("show");
+      }
+    }
+
+    helpOpen.onclick = function(e) {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        document.getElementById("mobile-help").style.display = "block";
+      } else {
+        document.getElementById("pc-help").style.display = "block";
+      }; //判断pc or mb
+    }
+
+    //点击以外区域关闭
+    document.onclick = function(e) { //点菜单外区域隐藏
+      var e = e || window.event; //浏览器兼容性
+      var elem = e.target || e.srcElement;
+      if (menuRs.classList.contains("show")) {
+        menuRs.classList.remove("show"); //关闭菜单弹出栏
+        menuBtn.innerHTML = '<span>菜单</span>';
+      }
+
+      while (elem) { //循环判断至跟节点，防止点击的是div#tb-tj子元素
+        if (elem.id && elem.id == 'tb-tj') {
+          return;
+        }
+        elem = elem.parentNode;
+      }
+
+      if (tjTb.classList.contains("show")) {
+        tjTb.classList.remove("show"); //关闭统计表格
+      }
+
+      if (cyRs.style.display == "block") {
+        cyRs.style.display = "none"; //关闭copyright表格
+      }
+    };
+    /*};*/
 
     //地图视角点击选卡
     AMap.event.addDomListener(document.getElementById('menu-rs-C09'), 'click', function() {
